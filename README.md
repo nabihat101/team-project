@@ -1,9 +1,9 @@
 
 
-1. Purpose of this Contract
+# 1. Purpose of this Contract
 This contract sets out shared expectations and commitments for how our team will collaborate during the course. It is designed to promote accountability, professionalism, and mutual support as we learn, complete in-class activities, and develop our course project together.
 
-2. Team Norms and Expectations
+# 2. Team Norms and Expectations
 a) Communication
 We will use __________________ (Slack, Discord, email, etc.) as our primary communication channel.
 
@@ -29,14 +29,14 @@ All deliverables should be completed on time, tested, and meet the agreed qualit
 Members agree to review each other’s work constructively.
 
 Each Pull Request will be reviewed by at least two team members.
-3. Conflict Resolution
+# 3. Conflict Resolution
 If conflict arises:
 
 The team will first attempt to resolve the issue privately through open discussion.
 
 If the issue persists, the team will involve a member of the course teaching team as mediator.
 
-4. Accountability
+# 4. Accountability
 Persistent non-participation or failure to meet expectations may result in lower peer evaluation scores.
 All members agree to provide honest and fair peer evaluations.
 
