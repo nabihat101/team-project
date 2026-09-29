@@ -5,9 +5,9 @@ This contract sets out shared expectations and commitments for how our team will
 
 # 2. Team Norms and Expectations
 a) Communication
-We will use __________________ (Slack, Discord, email, etc.) as our primary communication channel.
+We will use discord as our primary communication channel.
 
-Team members will respond to messages within ____ hours on weekdays.
+Team members will respond to messages within 2 hours on weekdays.
 
 All communication will remain respectful, professional, and constructive.
 
@@ -44,5 +44,11 @@ All members agree to provide honest and fair peer evaluations.
 By signing below, we acknowledge that we have read, discussed, and agreed to these terms. We understand that this contract is binding for the duration of the course and may be revised with the agreement of all team members.
 
 Team Member Signatures:
+- Nabiha
+- Yusyra
+- Dana
+- Iman
+- Jasmine
+  
 
-Date: ___________________
+Date: 29/09/2026
