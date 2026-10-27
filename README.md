@@ -18,7 +18,7 @@ The scope of the project will be institutions in Canada, mainly in the GTA and o
 
 ---
 ## User Stories
-### As a user, I want to be able to create an account and login with my interests so that I can receive personalized research papers and cold emails.
+### As a user, I want to be able to create an account and login with my interests so that I can receive personalized research papers and cold emails. 
 ### As a user, I want to be able to receive a ranked list of professors who match my research interests and preferred location/institution, so that I know who I can contact for opportunities.
 ### As a user, I want to be able to receive a recommended research paper that is catered to my interests so that I can explore this area more. 
 ### As a user, I want to be able to save and organize research papers that are of interest to me so that I can keep track of what papers I enjoyed.
@@ -36,9 +36,11 @@ The scope of the project will be institutions in Canada, mainly in the GTA and o
 ## Minimal Viable Product (MVP)
 | Team Member | MVP Use Case |
 |-------------|--------------|
-| Name | Use Case |
-| Name | Use Case |
-| Name | Use Case |
+| Nabiha | Use Case #1 - Login |
+| Yusyra | Use Case #2 - Ranked list |
+| Iman | Use Case #5 - Tracking Contact |
+| Jasmine | Use Case #4 - Saving Papers|
+| Dana | Use Case #3 - Recommended Papers|
 ---
 ## Entities
 ### Entity 1
