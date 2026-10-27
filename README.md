@@ -1,12 +1,11 @@
 # Project Name
 ## Team Information
 ### Team Members
-- Name
-- Name
-- Name
-- Name
-- Name
-- Name
+- Nabiha Tariq
+- Yusyra Hossain
+- Iman Imran
+- Dana Younes
+- Jasime Bui
 ---
 
 ## Project Description
@@ -42,7 +41,7 @@
 **Documentation:** [Link]
 **How it is used in the program:**
 ---
-## Design Diagrams
+## Design Diagrams (Optional)
 ### UML Class Diagram
 ### Sequence Diagrams
 ---
