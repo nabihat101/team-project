@@ -1,22 +1,31 @@
-# Project Name
+# CS Research Finder
 ## Team Information
 ### Team Members
 - Nabiha Tariq
 - Yusyra Hossain
 - Iman Imran
 - Dana Younes
-- Jasime Bui
+- Jasmine Bui
 ---
 
 ## Project Description
-### Domain
-[Project description]
+CS Research Finder helps students find computer science research opportunities. Users can browse professors by their research area/topic and locations and view their current works. Users can create an account to track which professors they have reached out through the contact information available on the professor page. Tentatively cold email template and summaries. 
+
+### Walkthrough 
+First user signs in or signs up with their information and areas of interest. Then, we get a landing page with a two search filters on location and topics. After loging in, the platform will recommend one research paper based on the user's profile interests. User selects what they want, searches, and gets a list of professors who have research in those areas. The user will then click on professor names to find research papers of interest. In the professor profile, there will be contact information for the user to cold email. Once the user has contacted the professor, they will click a button to signal they've contacted the professor and that is stored in the database. On each professor profile, there will be a cold email template personalized for each user that relates to the professor's work and the user's interest.
+
+The scope of the project will be institutions in Canada, mainly in the GTA and other larger institutions across Canada.
+
 ---
 ## User Stories
-### User Story 1
-### User Story 2
-### User Story 3
-(Add additional user stories as needed.)
+### As a user, I want to be able to create an account and login with my interests so that I can receive personalized research papers and cold emails.
+### As a user, I want to be able to receive a ranked list of professors who match my research interests and preferred location/institution, so that I know who I can contact for opportunities.
+### As a user, I want to be able to receive a recommended research paper that is catered to my interests so that I can explore this area more. 
+### As a user, I want to be able to save and organize research papers that are of interest to me so that I can keep track of what papers I enjoyed.
+### As a user, I want to be able to track what professors I have contacted and their reply status, so that I can manage my outreach. 
+### As a user, I want to be able to search for a professor, an area of interest, or institution so that I can find professors and papers who align with my interests. 
+### As a user, I want to be able to click on professor names in my results so that I can see a summary of their research and papers along with a link to the institution they are working at. 
+### As a user, I want to be able to receive a cold email template while I’m visiting a professor page that is personalized with my interests and the professor’s area of research.
 ---
 ## Use Cases
 ### Use Case 1
