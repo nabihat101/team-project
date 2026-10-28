@@ -29,13 +29,17 @@ The scope of the project will be institutions in Canada, mainly in the GTA and o
 ---
 ## Use Cases
 ### Use Case 1
+
+<br>
 ### Use Case 2: View a ranked list of Matching Professors
-#### Primary Actor: User looking for research opportunities
+#### Primary Actor: 
+User looking for research opportunities
 #### Preconditions: 
 - The user is logged in.
 - The user has just logged in, or has returned to the landing page while logged in.
 - The user’s profile contains at least one research interest.
-#### Trigger: The user arrives at the landing page while logged in.
+#### Trigger: 
+The user arrives at the landing page while logged in.
 #### Success Outcome: The user sees a list of professors ordered from best match to weakest match, based on their profile, each with enough information to decide whether to view their profile.
 #### Main success scenario: 
 1. The user logs in, and arrives at the landing page.
@@ -56,6 +60,7 @@ The scope of the project will be institutions in Canada, mainly in the GTA and o
 1. The system shows the best matches first.
 2. The user can ask to see more results.
 
+<br>
 
 ### Use Case 3
 (Add additional use cases as needed.)
