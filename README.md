@@ -41,7 +41,8 @@ User looking for research opportunities
 - The user’s profile contains at least one research interest.
 #### Trigger: 
 The user arrives at the landing page while logged in.
-#### Success Outcome: The user sees a list of professors ordered from best match to weakest match, based on their profile, each with enough information to decide whether to view their profile.
+#### Success Outcome: 
+The user sees a list of professors ordered from best match to weakest match, based on their profile, each with enough information to decide whether to view their profile.
 #### Main success scenario: 
 1. The user logs in, and arrives at the landing page.
 2. The system finds professors whose research areas match the user’s profile interests and preferred location/institution.
