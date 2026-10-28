@@ -71,7 +71,7 @@ The user clicks on a button to create an account or a button to login
 
 ### Use Case 2: View a ranked list of Matching Professors
 #### Primary Actor: 
-User looking for research opportunities
+User that already has an account
 #### Preconditions: 
 - The user is logged in.
 - The user has just logged in, or has returned to the landing page while logged in.
