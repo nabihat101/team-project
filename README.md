@@ -29,7 +29,9 @@ The scope of the project will be institutions in Canada, mainly in the GTA and o
 ---
 ## Use Cases
 ### Use Case 1
-### Use Case 2
+### Use Case 2: Receive a ranked list of Professors
+#### Primary Actor: 
+
 ### Use Case 3
 (Add additional use cases as needed.)
 ---
