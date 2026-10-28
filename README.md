@@ -28,8 +28,45 @@ The scope of the project will be institutions in Canada, mainly in the GTA and o
 ### As a user, I want to be able to receive a cold email template while I’m visiting a professor page that is personalized with my interests and the professor’s area of research.
 ---
 ## Use Cases
-### Use Case 1
-
+### Use Case 1: Signing up/Creating an account 
+#### Primary Actor:
+User 
+#### Preconditions:
+- User has access to the application
+- User doesn't have an account if attempting to create a new account
+#### Trigger:
+The user clicks on a button to create an account or a button to login
+#### Success Outcome:
+- User has successfully created an account or has logged into the application, launching a home page on application
+- Unsuccessful login or creation of account will lead to a popup error message prompting user to try again
+- User's interests and information are saved to database
+- The user can receive personalized papers and cold emails based on their information
+#### Main Success Scenario:
+1. User opens application
+2. User selects option to create an account
+3. System prompts user to enter their information and interests
+4. User clicks submit button
+5. System validates submitted information to ensure no errors
+6. System creates user account and saves information to database
+7. System displays message that account was created successfully
+8. User logs in with their account name and password
+9. System verifies the password and grants access to application
+10. System launches home page where user can view a personalized paper, personalized suggestions for professors to contact, and search bar.
+#### Extensions:
+##### 4a: User leaves fields empty
+1. System will display message with fields that still need to filled out by user
+2. Use case continues at step 4
+##### 5a: Email entered is invalid and not in use (subject to change if we don't want to collect emails bc of privacy)
+1. System will prompt user to reenter a correct email
+2. Use case continues at step 5
+##### 5b: Email entered is already in database
+1. System will inform user that they already have an account
+2. System will prompt user to login
+3. Use case continues at step 8
+##### 8a: User enters wrong credentials
+1. System displays message that credentials are incorrect 
+2. System prompts user to reenter credentials
+3. Use case continues at step 8
 
 
 ### Use Case 2: View a ranked list of Matching Professors
