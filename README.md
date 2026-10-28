@@ -30,7 +30,8 @@ The scope of the project will be institutions in Canada, mainly in the GTA and o
 ## Use Cases
 ### Use Case 1
 
-/
+
+
 ### Use Case 2: View a ranked list of Matching Professors
 #### Primary Actor: 
 User looking for research opportunities
@@ -59,7 +60,8 @@ The user arrives at the landing page while logged in.
 ##### 4b. Many professors match.
 1. The system shows the best matches first.
 2. The user can ask to see more results.
-/
+
+
 
 
 ### Use Case 3
