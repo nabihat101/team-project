@@ -230,9 +230,9 @@ The user clicks the "Mark as Contacted" checkbox on a professor's profile page a
 |-------------|--------------|
 | Nabiha | Use Case #1 - Login |
 | Yusyra | Use Case #2 - Ranked list |
-| Iman | Use Case #5 - Tracking Contact |
-| Jasmine | Use Case #4 - Saving Papers|
 | Dana | Use Case #3 - Recommended Papers|
+| Jasmine | Use Case #4 - Saving Papers|
+| Iman | Use Case #5 - Tracking Contact |
 ---
 ## Entities
 ### Entity 1
