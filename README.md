@@ -166,18 +166,18 @@ The user clicks the "Mark as Contacted" checkbox on a professor's profile page a
 10. User can update the reply status of the professor
 11. App saves this information to the database
 #### Extensions:
-### 4a: User tries to mark the professor as contacted without logging in
+## 4a: User tries to mark the professor as contacted without logging in
 1. App will display the message "Please log in to track professors"
 2. Use case continues at step 1.
-### 5a: User has already marked this professor as contacted:
+## 5a: User has already marked this professor as contacted:
 1. System shows the button as “Contacted” with the date, and asks whether the user wants to undo it
 2. If the user clicks yes, the app removes the professor from the contacted list, and the use case continues at step 7 with the message “Removed from contacted professors”
 3. If the user clicks no, the use case ends
-### 5b: User clicks the contacted button by mistake
+## 5b: User clicks the contacted button by mistake
 1. User clicks the “Contacted” button again to unmark it.
 2. App asks for confirmation, then removes the professor from the list in the database
 3. Use case continues at step 7
-### 8a: User hasn't contacted any professors yet
+## 8a: User hasn't contacted any professors yet
 1. System displays the message “You haven’t contacted any professors yet” and prompts them to return to the professor search page
 2. Use case ends.
 
