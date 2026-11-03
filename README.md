@@ -228,7 +228,7 @@ The user clicks the "Mark as Contacted" checkbox on a professor's profile page a
 ## Minimal Viable Product (MVP)
 | Team Member | MVP Use Case |
 |-------------|--------------|
-| Nabiha | Use Case #1 - Login |
+| Nabiha | Use Case #1 and #6 - Login and Searching|
 | Yusyra | Use Case #2 - Ranked list |
 | Dana | Use Case #3 - Recommended Papers|
 | Jasmine | Use Case #4 - Saving Papers|
