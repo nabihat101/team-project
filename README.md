@@ -100,10 +100,53 @@ The user sees a list of professors ordered from best match to weakest match, bas
 2. The user can ask to see more results.
 
 
-
-
-### Use Case 3
-(Add additional use cases as needed.)
+### Use Case 3: Receiving a Recommended Paper
+#### Primary Actor:
+User
+#### Preconditions:
+- User is logged in.
+#### Trigger:
+The user arrives at the landing page after logging in.
+#### Success Outcome:
+- User sees one recommended paper picked for their interests, along with a short reason why it was picked
+- The same paper stays as the recommendation for the rest of the day, and a new one shows up the next day
+- The user's feedback on the paper is saved and used to improve future recommendations
+#### Main Success Scenario:
+1. User logs in and arrives at the landing page.
+2. System checks if the user already has a recommendation for today.
+3. System gets recent papers from OpenAlex related to the user's interests.
+4. System removes papers that were already recommended to the user before.
+5. System scores each paper based on how well it matches the user's interests, how recent it is, and how many times it has been cited.
+6. System picks the highest scoring paper and saves it to the database as today's recommendation.
+7. System displays the paper's title, authors, year, abstract, a link to the full paper, and why it was picked (ex. "Matches your interest in robotics · Published this year · Highly cited").
+8. User reads the recommendation and clicks "More like this" or "Less like this".
+9. System updates how much weight the paper's topics get in the user's future recommendations and saves this to the database.
+10. System displays the message "Thanks! We'll use this for future recommendations."
+#### Extensions:
+##### 2a: User already has a recommendation for today
+1. System loads the saved recommendation from the database.
+2. Use case continues at step 7.
+##### 3a: User has no research interests in their profile
+1. System gets recent, highly cited papers instead.
+2. System prompts the user to add interests to get personalized recommendations.
+3. Use case continues at step 4.
+##### 3b: OpenAlex is unavailable
+1. System displays the user's most recent saved recommendation with the message "Couldn't load a new paper, here's your last one."
+2. If there is no saved recommendation, system displays "Couldn't load a paper right now, please try again later."
+3. Use case ends.
+##### 4a: All papers found were already recommended before
+1. System widens the search to related topics or slightly older papers.
+2. Use case continues at step 5.
+##### 7a: Paper has no abstract
+1. System displays the title, authors, and link, with the message "No abstract available."
+2. Use case continues at step 8.
+##### 8a: User saves the paper
+1. User clicks the bookmark icon to save the paper (see Use Case 4).
+2. System also counts saving the paper as "More like this".
+3. Use case continues at step 9.
+##### 8b: User clicks on an author's name
+1. System opens that professor's profile page.
+2. Use case ends.
 
 
 ### Use Case 4: Saving favorite papers
