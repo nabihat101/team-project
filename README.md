@@ -104,6 +104,41 @@ The user sees a list of professors ordered from best match to weakest match, bas
 
 ### Use Case 3
 (Add additional use cases as needed.)
+
+
+### Use Case 4: Saving favorite papers
+#### Primary Actor:
+User
+#### Preconditions:
+- User is logged in.
+- User is viewing a research paper.
+#### Trigger:
+The user clicks on a bookmark icon to save a paper to a general collection.
+#### Success Outcome:
+- User can see the bookmark icon appear darker.
+- User can find the saved paper in the collection on the profile page.
+#### Main Success Scenario:
+1. User logs in.
+2. User browses for papers or search for a particular paper.
+3. User clicks on a particular paper to enter viewing interface for that paper.
+4. User clicks on the bookmark icon to save that paper.
+5. System registers that paper as saved in database and adds to user's collection.
+6. System displays message "Added to collection".
+7. User clicks on profile icon to enter profile interface.
+8. System displays the saved papers by saving order, most recent to least recent in the collection panel.
+9. User can click on that paper to directly enter viewing interface for that paper.
+10. User clicks again on the darker bookmark icon to unsave.
+11. System registers that paper as unsaved in database and removes from user's collection.
+12. System displays message "Remove from collection".
+#### Extensions:
+##### 1a: User tries to save a paper without logging in
+1. System will display message "Please log in to save".
+2. Systems will redirect or prompt a button to arrive in log in page.
+3. Use case continues at step 1.
+##### 4a: User clicks on a 'saved' bookmark icon
+1. System will prompt user to verify that they want to remove from the collection.
+2. User clicks Yes to remove it from collection, No to keep it in the collection.
+3. Use case continues on step 11 or step 7.
 ---
 ## Minimal Viable Product (MVP)
 | Team Member | MVP Use Case |
