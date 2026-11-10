@@ -192,6 +192,34 @@ The user clicks the "Mark as Contacted" checkbox on a professor's profile page a
 1. System displays the message “You haven’t contacted any professors yet” and prompts them to return to the professor search page
 2. Use case ends.
 
+### Use Case 6: Searching for a professor/area of interest/institution's professors
+#### Primary Actor:
+User 
+#### Preconditions:
+- User has access to the application
+- User has an account with preferrences logged in
+#### Trigger:
+The user inserts text in serach bar to search for professors, institutions, or interests.
+#### Success Outcome:
+- System displays relevent professors who may have research that's of interest to user and/or location preferrences.
+- User can click on professors to find research papers that are of interest
+- User can click on home page to go back to search bar if needed
+#### Main Success Scenario:
+1. User logs in
+2. User enters a professor's name, institution, or area of interest
+3. Submits the text
+4. System fetches all relevent data
+5. User is directed to new page with list of professor names
+6. User selects a professor whose papers they want to look at
+7. User is directed to professors page to explore
+#### Extensions:
+##### 2a: User leaves fields empty
+1. System will display message with fields that still need to filled out by user
+2. Use case continues at step 2
+##### 2b: User enters words that do not match database keywords on subjects, institutions, and professors
+1. System will display message with fields are not valid and must be inputted again
+2. Use case continues at step 2
+
 
 ## Minimal Viable Product (MVP)
 | Team Member | MVP Use Case |
