@@ -82,7 +82,7 @@ The user arrives at the landing page while logged in.
 The user sees a list of professors ordered from best match to weakest match, based on their profile, each with enough information to decide whether to view their profile.
 #### Main success scenario: 
 1. The user logs in, and arrives at the landing page.
-2. The system finds professors whose research areas match the user’s profile interests and preferred location/institution.
+2. The system finds professors whose research areas match the user’s profile interests and preferred institution.
 3. The system ranks the matching professors by how well they fit.
 4. The system shows the ranked list, along with the criteria used and the location and topic filters. Each entry shows the professor’s name, institution, and the research areas that matched.
 5. The user reviews the list.
