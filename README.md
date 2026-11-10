@@ -240,9 +240,10 @@ The user clicks the "Mark as Contacted" checkbox on a professor's profile page a
 (Add additional entities as needed.)
 ---
 ## API Usage
-**API Name:**
-**Documentation:** [Link]
+**API Name:** OpenAlex
+**Documentation:** https://help.openalex.org/api/llm-quick-reference/
 **How it is used in the program:**
+We plan to use the OpenAlex API as a source for research data so that we don't have to build our own database of professors and research papers.
 ---
 ## Design Diagrams (Optional)
 ### UML Class Diagram
