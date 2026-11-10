@@ -111,6 +111,7 @@ The user arrives at the landing page after logging in.
 - User sees one recommended paper picked for their interests, along with a short reason why it was picked
 - The same paper stays as the recommendation for the rest of the day, and a new one shows up the next day
 - The user's feedback on the paper is saved and used to improve future recommendations
+- User can save the paper to their collection and revisit it later on
 #### Main Success Scenario:
 1. User logs in and arrives at the landing page.
 2. System checks if the user already has a recommendation for today.
@@ -119,9 +120,12 @@ The user arrives at the landing page after logging in.
 5. System scores each paper based on how well it matches the user's interests, how recent it is, and how many times it has been cited.
 6. System picks the highest scoring paper and saves it to the database as today's recommendation.
 7. System displays the paper's title, authors, year, abstract, a link to the full paper, and why it was picked (ex. "Matches your interest in robotics · Published this year · Highly cited").
-8. User reads the recommendation and clicks "More like this" or "Less like this".
-9. System updates how much weight the paper's topics get in the user's future recommendations and saves this to the database.
-10. System displays the message "Thanks! We'll use this for future recommendations."
+8. User clicks the bookmark icon to save the paper.
+9. System adds the paper to the user’s collection in the database, updates the bookmark icon and indicates "Added to collection"
+10. System uses saved paper's topics to improve future recommendations.
+11. User opens their profile and views their saved papers, ordered from most recently saved.
+12. User selects a saved paper to view details again
+
 #### Extensions:
 ##### 2a: User already has a recommendation for today
 1. System loads the saved recommendation from the database.
@@ -147,42 +151,6 @@ The user arrives at the landing page after logging in.
 ##### 8b: User clicks on an author's name
 1. System opens that professor's profile page.
 2. Use case ends.
-
-
-### Use Case 4: Saving favorite papers
-#### Primary Actor:
-User
-#### Preconditions:
-- User is logged in.
-- User is viewing a research paper.
-#### Trigger:
-The user clicks on a bookmark icon to save a paper to a general collection.
-#### Success Outcome:
-- User can see the bookmark icon appear darker.
-- User can find the saved paper in the collection on the profile page.
-#### Main Success Scenario:
-1. User logs in.
-2. User browses for papers or search for a particular paper.
-3. User clicks on a particular paper to enter viewing interface for that paper.
-4. User clicks on the bookmark icon to save that paper.
-5. System registers that paper as saved in database and adds to user's collection.
-6. System displays message "Added to collection".
-7. User clicks on profile icon to enter profile interface.
-8. System displays the saved papers by saving order, most recent to least recent in the collection panel.
-9. User can click on that paper to directly enter viewing interface for that paper.
-10. User clicks again on the darker bookmark icon to unsave.
-11. System registers that paper as unsaved in database and removes from user's collection.
-12. System displays message "Remove from collection".
-#### Extensions:
-##### 1a: User tries to save a paper without logging in
-1. System will display message "Please log in to save".
-2. Systems will redirect or prompt a button to arrive in log in page.
-3. Use case continues at step 1.
-##### 4a: User clicks on a 'saved' bookmark icon
-1. System will prompt user to verify that they want to remove from the collection.
-2. User clicks Yes to remove it from collection, No to keep it in the collection.
-3. Use case continues on step 11 or step 7.
----
 
 ### Use Case 5: Tracking Contacted Professors
 #### Primary Actor:
