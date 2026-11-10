@@ -224,11 +224,11 @@ The user inserts text in serach bar to search for professors, institutions, or i
 ## Minimal Viable Product (MVP)
 | Team Member | MVP Use Case |
 |-------------|--------------|
-| Nabiha | Use Case #1 and #6 - Login and Searching|
-| Yusyra | Use Case #2 - Ranked list |
-| Dana | Use Case #3 - Recommended Papers|
-| Jasmine | Use Case #4 - Saving Papers|
-| Iman | Use Case #5 - Tracking Contact |
+| Nabiha | Use Case # Professor Profile + Marked As contacted|
+| Yusyra | Use Case #2 - Ranked list Professors, changed base on filter|
+| Dana | Use Case #3 - Recommended Papers Systems|
+| Jasmine | Use Case # - Cold Emailing|
+| Iman | Use Case # - User System|
 ---
 ## Entities
 ### Entity 1
