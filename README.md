@@ -226,6 +226,14 @@ The user clicks on a professor name from the "Recommended Professors" filtering 
 1. System will display message with the error
 2. User can return to home or continue looking through professor page
 3. Use case continues at step 6
+#### 7a: User has already marked this professor as contacted:
+1. System shows the button as “Contacted” with the date, and asks whether the user wants to undo it
+2. If the user clicks yes, the app removes the professor from the contacted list, and the use case continues at step 7 with the message “Removed from contacted professors”
+3. If the user clicks no, use case continues at step 7
+#### 7b: User clicks the contacted button by mistake
+1. User clicks the “Contacted” button again to unmark it.
+2. App asks for confirmation, then removes the professor from the list in the database
+3. Use case continues at step 7
 
 
 
