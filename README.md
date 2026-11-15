@@ -23,7 +23,7 @@ The scope of the project will be institutions in Canada, mainly in the GTA and o
 ### As a user, I want to be able to receive a recommended research paper that is catered to my interests so that I can explore this area more. 
 ### As a user, I want to be able to save and organize research papers that are of interest to me so that I can keep track of what papers I enjoyed.
 ### As a user, I want to be able to track what professors I have contacted and their reply status, so that I can manage my outreach. 
-### As a user, I want to be able to search for a professor, an area of interest, or institution so that I can find professors and papers who align with my interests. 
+### As a user, I want to be able to click on a professor name and be shown all research papers a professor has published so that I can click through relevent papers and track if I've contacted said professor.
 ### As a user, I want to be able to click on professor names in my results so that I can see a summary of their research and papers along with a link to the institution they are working at. 
 ### As a user, I want to be able to receive a cold email template while I’m visiting a professor page that is personalized with my interests and the professor’s area of research.
 ---
@@ -192,39 +192,47 @@ The user clicks the "Mark as Contacted" checkbox on a professor's profile page a
 1. System displays the message “You haven’t contacted any professors yet” and prompts them to return to the professor search page
 2. Use case ends.
 
-### Use Case 6: Searching for a professor/area of interest/institution's professors
+### Use Case 6: Clicking on professor page and action items on the page
 #### Primary Actor:
 User 
 #### Preconditions:
 - User has access to the application
 - User has an account with preferrences logged in
+- Professor profiles and research publications are available in system
 #### Trigger:
-The user inserts text in serach bar to search for professors, institutions, or interests.
+The user clicks on a professor name from the "Recommended Professors" filtering system on landing page.
 #### Success Outcome:
 - System displays relevent professors who may have research that's of interest to user and/or location preferrences.
-- User can click on professors to find research papers that are of interest
-- User can click on home page to go back to search bar if needed
+- User can click on papers to be directed to the official publication page
+- User can track who they've contacted on the page
+
 #### Main Success Scenario:
 1. User logs in
-2. User enters a professor's name, institution, or area of interest
-3. Submits the text
-4. System fetches all relevent data
-5. User is directed to new page with list of professor names
-6. User selects a professor whose papers they want to look at
-7. User is directed to professors page to explore
+2. User toggles filters until they're satisfied with what professors are showing up
+3. User clicks on a professor name from the professor list
+4. System directs the user to the professor page
+5. System fetches all relevent data to professor with name and publication and displays it
+6. User clicks on a publication to read more about and is redirected to external research paper site
+7. User updates professor contact status
+8. System saves the contact status to user profile
+9. System displays message that the action has gone through and contact status has been updated
+10. User can return to home or continue searching papers from a professor
 #### Extensions:
-##### 2a: User leaves fields empty
-1. System will display message with fields that still need to filled out by user
-2. Use case continues at step 2
-##### 2b: User enters words that do not match database keywords on subjects, institutions, and professors
-1. System will display message with fields are not valid and must be inputted again
-2. Use case continues at step 2
+##### 3a: No publications
+1. System displays message that no publications from the professor are available at the moment
+2. User can return to home page and continue search
+3. Use case ends
+##### 6a: User clicks on research paper with no available link
+1. System will display message with the error
+2. User can return to home or continue looking through professor page
+3. Use case continues at step 6
+
 
 
 ## Minimal Viable Product (MVP)
 | Team Member | MVP Use Case |
 |-------------|--------------|
-| Nabiha | Use Case # Professor Profile + Marked As contacted|
+| Nabiha | Use Case #6 - Professor Page|
 | Yusyra | Use Case #2 - Ranked list Professors, changed base on filter|
 | Dana | Use Case #3 - Recommended Papers Systems|
 | Jasmine | Use Case # - Cold Emailing|
