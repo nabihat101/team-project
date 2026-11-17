@@ -233,10 +233,14 @@ The user visits a professor's profile page and clicks the "Generate Cold Email" 
 | Iman | Use Case #6 - User System|
 ---
 ## Entities
+(To be modified as needed). 
 ### User
+Instances: username, password, research interests, location preferences
 ### Professor
-### Paper
-(Add additional entities as needed.)
+Instances: name, institution, research areas, publications
+### ResearchPaper
+Instances: id, title, authors, year, abstract, url
+
 ---
 ## API Usage
 **API Name:** OpenAlex
