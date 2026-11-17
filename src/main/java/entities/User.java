@@ -32,8 +32,8 @@ public class User {
         
         this.username = username;
         this.password = password;
-        this.interests = interests;
-        this.institutions = institutions;
+        this.interests = List.copyOf(interests);
+        this.institutions = List.copyOf(institutions);
 
     }
 
