@@ -1,6 +1,6 @@
-package LoginUseCase.interface_adapter.login;
-import LoginUseCase.LoginInputBoundary;
-import LoginUseCase.LoginInputData;
+package interface_adapter.login;
+import use_case.LoginUseCase.LoginInputBoundary;
+import use_case.LoginUseCase.LoginInputData;
 
 /**
  * class for controller of login use case

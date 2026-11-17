@@ -1,4 +1,4 @@
-package LoginUseCase.interface_adapter.loggedin;
+package interface_adapter.loggedin;
 
 /**
  * Login state for login view model

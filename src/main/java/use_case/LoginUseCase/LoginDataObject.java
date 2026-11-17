@@ -1,8 +1,8 @@
-package LoginUseCase;
+package use_case.LoginUseCase;
 
 import entities.User;
 import entities.UserFactory;
-import LoginDataAccessInterface;
+import use_case.LoginUseCase.LoginDataAccessInterface;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * Saves users to a CSV file so accounts stick around after the app closes.
  */
-public class LoginDataObject implements LoginDataAccessInterface {
+public class LoginDataObject implements use_case.LoginUseCase.LoginDataAccessInterface {
 
     private static final String HEADER = "username,password,interests,institutions";
     // lists are stored in one column, separated by ;
@@ -92,6 +92,11 @@ public class LoginDataObject implements LoginDataAccessInterface {
         return new ArrayList<>(Arrays.asList(column.split(LIST_SEPARATOR)));
     }
 
+    @Override
+    public boolean existsByUsername(String username) {
+        return false;
+    }
+
     /**
      * Adds the user (or updates them if they already exist) and saves.
      * @param user the user to save
@@ -102,22 +107,18 @@ public class LoginDataObject implements LoginDataAccessInterface {
     }
 
     @Override
-    public boolean existsByName(String username) {
-        return users.containsKey(username);
-    }
-
-    @Override
     public User get(String username) {
         return users.get(username);
     }
 
     @Override
-    public void setCurrentUsername(String username) {
-        currentUsername = username;
+    public void setUsername(String username) {
+
     }
 
     @Override
-    public String getCurrentUsername() {
-        return currentUsername;
+    public String getUsername() {
+        return "";
     }
+
 }

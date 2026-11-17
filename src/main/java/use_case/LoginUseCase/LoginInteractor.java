@@ -1,6 +1,5 @@
-package LoginUseCase;
+package use_case.LoginUseCase;
 
-import java.util.List;
 import entities.User;
 
 public class LoginInteractor implements LoginInputBoundary {
