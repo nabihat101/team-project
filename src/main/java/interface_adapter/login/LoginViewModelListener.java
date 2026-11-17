@@ -1,4 +1,4 @@
-package LoginUseCase.interface_adapter.login;
+package interface_adapter.login;
 
 /**
  * The interface for the Login View Model Listener

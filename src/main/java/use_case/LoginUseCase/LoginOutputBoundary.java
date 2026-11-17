@@ -1,4 +1,4 @@
-package LoginUseCase;
+package use_case.LoginUseCase;
 
 /**
  * Output boundary for login use case

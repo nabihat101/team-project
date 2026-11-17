@@ -1,4 +1,4 @@
-package LoginUseCase;
+package use_case.LoginUseCase;
 
 /**
  *  The input boundary for the login use case

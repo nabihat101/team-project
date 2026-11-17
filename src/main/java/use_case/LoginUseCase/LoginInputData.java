@@ -1,4 +1,4 @@
-package LoginUseCase;
+package use_case.LoginUseCase;
 
 /**
  * The input data for the login use case
