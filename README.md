@@ -66,7 +66,6 @@ The user clicks on a button to create an account or a button to login
 2. System prompts user to reenter credentials
 3. Use case continues at step 8
 
-
 ### Use Case 2: View a ranked list of Matching Professors
 #### Primary Actor: 
 User that already has an account
@@ -93,7 +92,6 @@ The user sees a list of professors ordered from best match to weakest match, bas
 ##### 4b. Many professors match.
 1. The system shows the best matches first.
 2. The user can ask to see more results.
-
 
 ### Use Case 3: Receiving a Recommended Paper
 #### Primary Actor:
@@ -147,57 +145,17 @@ The user arrives at the landing page after logging in.
 1. System opens that professor's profile page.
 2. Use case ends.
 
-### Use Case 5: Tracking Contacted Professors
-#### Primary Actor:
-User
-#### Preconditions:
-- User is logged in.
-- User is viewing a professor's profile page
-### Trigger:
-The user clicks the "Mark as Contacted" checkbox on a professor's profile page after reaching out to them.
-#### Success Outcome:
-- The professor is saved as "Contacted" in the database for the user, with the date of contact also being saved
-- The checkbox on the professor’s page changes to show the contacted status
-- The user can view all professors that were contacted, with their reply status, in a tracking list on their profile
-#### Main Success Scenario:
-1. User logs into the app
-2. User searches for or selects a professor from the list
-3. App displays the professor’s profile
-4. User contacts the professor outside the app, through email, etc.
-5. User clicks the "Mark as Contacted" checkbox on the professor's profile
-6. App saves the professor as contacted for that user in the database, along with the date
-7. System updates the checkbox to “Contacted” and displays the message “Added to your contacted professors”
-8. User clicks on their profile icon and opens the “Contacted Professors” list
-9. System displays all contacted professors, in order from most recently contacted, each showing the professor’s name, institution, date contacted, and reply status
-10. User can update the reply status of the professor
-11. App saves this information to the database
-#### Extensions:
-#### 4a: User tries to mark the professor as contacted without logging in
-1. App will display the message "Please log in to track professors"
-2. Use case continues at step 1.
-#### 5a: User has already marked this professor as contacted:
-1. System shows the button as “Contacted” with the date, and asks whether the user wants to undo it
-2. If the user clicks yes, the app removes the professor from the contacted list, and the use case continues at step 7 with the message “Removed from contacted professors”
-3. If the user clicks no, the use case ends
-#### 5b: User clicks the contacted button by mistake
-1. User clicks the “Contacted” button again to unmark it.
-2. App asks for confirmation, then removes the professor from the list in the database
-3. Use case continues at step 7
-#### 8a: User hasn't contacted any professors yet
-1. System displays the message “You haven’t contacted any professors yet” and prompts them to return to the professor search page
-2. Use case ends.
-
-### Use Case 6: Clicking on professor page and action items on the page
+### Use Case 4: Clicking on professor page and action items on the page
 #### Primary Actor:
 User 
 #### Preconditions:
 - User has access to the application
-- User has an account with preferrences logged in
+- User has an account with preferences logged in
 - Professor profiles and research publications are available in system
 #### Trigger:
 The user clicks on a professor name from the "Recommended Professors" filtering system on landing page.
 #### Success Outcome:
-- System displays relevent professors who may have research that's of interest to user and/or location preferrences.
+- System displays relevant professors who may have research that's of interest to user and/or location preferrences.
 - User can click on papers to be directed to the official publication page
 - User can track who they've contacted on the page
 
@@ -206,7 +164,7 @@ The user clicks on a professor name from the "Recommended Professors" filtering 
 2. User toggles filters until they're satisfied with what professors are showing up
 3. User clicks on a professor name from the professor list
 4. System directs the user to the professor page
-5. System fetches all relevent data to professor with name and publication and displays it
+5. System fetches all relevant data to professor with name and publication and displays it
 6. User clicks on a publication to read more about and is redirected to external research paper site
 7. User updates professor contact status
 8. System saves the contact status to user profile
@@ -230,20 +188,54 @@ The user clicks on a professor name from the "Recommended Professors" filtering 
 2. App asks for confirmation, then removes the professor from the list in the database
 3. Use case continues at step 7
 
-
+### Use Case 5: Generate a personalized cold email
+#### Primary Actor:
+User
+#### Preconditions:
+- User has access to the application
+- User has an account with preferences logged in
+- Professor profiles and research publications are available in system
+#### Trigger:
+The user visits a professor's profile page and clicks the "Generate Cold Email" button
+#### Success Outcome:
+- A personalized cold email that reflects the user's interests and the professor's research areas is generated and displayed
+- The user can copy or edit the email for their own use
+#### Main Success Scenario:
+1. User visits a professor's profile page
+2. System gets all relevant information of the professor (name, research areas, institution,...) and displays it
+3. User clicks on the "Generate Cold Email" button
+4. System gets all relevant information of the user (interests, institution)
+5. System generates a personalized cold email template with a suitable subject, greeting, introduction of the user, expression of the user's interest and reference to the professor's works and closing
+6. System displays the generated email to the user
+7. User reviews and edits the generated as they need
+8. User can copy the email for their own use or regenerate it
+#### Extensions:
+##### 4a: User has not provided their interests
+1. System prompts the user to provide their interests
+2. User enters the required information
+3. Use case continues at step 5
+##### 7a: User edits the generated template
+1. User edits the generated template
+2. System updates the modifications and displays accordingly
+3. Use case continues at step 8
+##### 8a: User click regenerate the email
+1. User selects "Regenerate"
+2. System regenerate a different email using the same information of the user and professor
+3. Use case continues at step 6
 
 ## Minimal Viable Product (MVP)
 | Team Member | MVP Use Case |
 |-------------|--------------|
-| Nabiha | Use Case #6 - Professor Page|
+| Nabiha | Use Case #4 - Professor Page|
 | Yusyra | Use Case #2 - Ranked list Professors|
 | Dana | Use Case #3 - Recommended Papers Systems|
-| Jasmine | Use Case # - Cold Emailing|
-| Iman | Use Case # - User System|
+| Jasmine | Use Case #5 - Cold Emailing|
+| Iman | Use Case #6 - User System|
 ---
 ## Entities
-### Entity 1
-### Entity 2
+### User
+### Professor
+### Paper
 (Add additional entities as needed.)
 ---
 ## API Usage
