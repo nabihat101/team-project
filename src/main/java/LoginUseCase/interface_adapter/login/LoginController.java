@@ -1,18 +1,18 @@
-package interface_adapter;
+package LoginUseCase.interface_adapter.login;
 import LoginUseCase.LoginInputBoundary;
 import LoginUseCase.LoginInputData;
 
 /**
  * class for controller of login use case
  */
-public class loginController {
+public class LoginController {
     private final LoginInputBoundary interactor;
 
     /**
      * initializes the fields for class
      * @param loginInteractor - interactor for the use case
      */
-    public loginController(LoginInputBoundary loginInteractor) {
+    public LoginController(LoginInputBoundary loginInteractor) {
         this.interactor = loginInteractor;
     }
 
