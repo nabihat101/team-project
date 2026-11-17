@@ -22,8 +22,8 @@ public class Professor {
 
         this.name = name;
         this.institution = institution;
-        this.researchAreas = researchAreas;
-        this.publications = publications;
+        this.researchAreas = List.copyOf(researchAreas);
+        this.publications = List.copyOf(publications);
     }
 
     /**
