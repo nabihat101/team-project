@@ -223,6 +223,37 @@ The user visits a professor's profile page and clicks the "Generate Cold Email" 
 2. System regenerate a different email using the same information of the user and professor
 3. Use case continues at step 6
 
+### Use Case 6: Viewing My Profile
+#### Primary Actor:
+User
+#### Preconditions:
+- User has an account and is logged in
+- User may or may not have saved any papers or contacted any professors yet
+#### Trigger:
+The user clicks on the "My Profile" button from the home page
+#### Success Outcome:
+- The profile page opens and shows the user's account information and research interests
+- The page shows a list of the research papers the user has saved
+- The page shows a list of the professors the user has contacted, along with the date and status (whether the professor has responded or not)
+- If a list is empty, the page shows a helpful message instead of a blank space
+- The user can click on a paper to view it, and on a professor to go to their profile page
+#### Main Success Scenario:
+1. User clicks on the "My Profile" button
+2. System retrieves the user's account information and research interests from the database
+3. System retrieves the list of research papers the user has saved
+4. System retrieves the list of professors the user has contacted, with the date and status for each
+5. System combines this information into a profile view
+6. System displays the profile page with the user's interests, saved papers and contacted professors
+7. User looks through the lists and clicks on a paper or a professor
+8. System opens the paper, or that professor's profile page
+#### Extensions:
+##### 3a: User has not saved any research papers
+1. System displays a message such as "You haven't saved any papers yet. Browse professors' work to start saving papers."
+2. Use case continues at step 4
+##### 4a: User has not contacted any professors
+1. System displays a message such as "You haven't marked any professors as contacted yet."
+2. Use case continues at step 5
+
 ## Minimal Viable Product (MVP) 
 ** Each use case corresponds to one user story. 
 | Team Member | MVP Use Case |
