@@ -223,7 +223,8 @@ The user visits a professor's profile page and clicks the "Generate Cold Email" 
 2. System regenerate a different email using the same information of the user and professor
 3. Use case continues at step 6
 
-## Minimal Viable Product (MVP)
+## Minimal Viable Product (MVP) 
+** Each use case corresponds to one user story. 
 | Team Member | MVP Use Case |
 |-------------|--------------|
 | Nabiha | Use Case #4 - Professor Page|
