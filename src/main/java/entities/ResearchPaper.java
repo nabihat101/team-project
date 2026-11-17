@@ -23,7 +23,7 @@ public class ResearchPaper {
                          String abstractText, String url) {
         this.id = id;
         this.title = title;
-        this.authors = authors;
+        this.authors = List.copyOf(authors);
         this.year = year;
         this.abstractText = abstractText;
         this.url = url;
