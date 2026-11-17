@@ -19,7 +19,7 @@ The scope of the project will be institutions in Canada, mainly in the GTA and o
 ---
 ## User Stories
 ### As a user, I want to be able to create an account and login with my interests so that I can receive personalized research papers and cold emails. 
-### As a user, I want to be able to receive a ranked list of professors who match my research interests and preferred location/institution, so that I know who I can contact for opportunities.
+### As a user, I want to be able to receive a ranked list of professors who match my research interests and preferred location/institution (either from my profile, or from the filters I adjust), so that I know who I can contact for opportunities.
 ### As a user, I want to be able to receive a recommended research paper that is catered to my interests so that I can explore this area more. 
 ### As a user, I want to be able to save and organize research papers that are of interest to me so that I can keep track of what papers I enjoyed.
 ### As a user, I want to be able to track what professors I have contacted and their reply status, so that I can manage my outreach. 
