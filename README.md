@@ -79,21 +79,18 @@ User that already has an account
 #### Trigger: 
 The user arrives at the landing page while logged in.
 #### Success Outcome: 
-The user sees a list of professors ordered from best match to weakest match, based on their profile, each with enough information to decide whether to view their profile.
+The user sees a list of professors ordered from best match to weakest match, based on their profile OR adjusted filters.
 #### Main success scenario: 
 1. The user logs in, and arrives at the landing page.
-2. The system finds professors whose research areas match the user’s profile interests and preferred institution.
+2. The system finds professors whose research areas match the user’s interests (either from profile, or from the adjusted filters).
 3. The system ranks the matching professors by how well they fit.
 4. The system shows the ranked list, along with the criteria used and the location and topic filters. Each entry shows the professor’s name, institution, and the research areas that matched.
 5. The user reviews the list.
-#### Extensions: 
-##### 2a. The user’s profile has no preferred location or institution.
-1. The system ranks using research interests only.
-2. The system tells the user that adding a location or institution would improve the results.
-3. The use case continues at step 4.
-##### 4a. No professors match the user’s profile.
+6. The user changes the filters, and steps repeat from 2.
+#### Extensions:
+##### 2a. No professors match the user’s profile OR combination of filters.
 1. The system tells the user that no matches were found.
-2. The system suggests adding more interests or location.
+2. The system suggests adding more interests/location, or changing filters.
 3. The use case ends.
 ##### 4b. Many professors match.
 1. The system shows the best matches first.
@@ -241,7 +238,7 @@ The user clicks on a professor name from the "Recommended Professors" filtering 
 | Team Member | MVP Use Case |
 |-------------|--------------|
 | Nabiha | Use Case #6 - Professor Page|
-| Yusyra | Use Case #2 - Ranked list Professors, changed base on filter|
+| Yusyra | Use Case #2 - Ranked list Professors|
 | Dana | Use Case #3 - Recommended Papers Systems|
 | Jasmine | Use Case # - Cold Emailing|
 | Iman | Use Case # - User System|
