@@ -17,12 +17,19 @@ public class User {
      * @param password      The password
      * @param interests     The user's research interests
      * @param institutions  The user's preferred institutions
-     *
+     * @throws IllegalArgumentException if the password or username are empty
      */
 
     public User(String username, String password, List<String> interests,
                 List<String> institutions){
 
+        if ("".equals(username)) {
+            throw new IllegalArgumentException("Username cannot be empty");
+        }
+        if ("".equals(password)) {
+            throw new IllegalArgumentException("Password cannot be empty");
+        }
+        
         this.username = username;
         this.password = password;
         this.interests = interests;
