@@ -2,7 +2,7 @@ package use_case.LoginUseCase;
 
 import entities.User;
 import entities.UserFactory;
-import use_case.LoginUseCase.LoginDataAccessInterface;
+// import use_case.LoginUseCase.LoginDataAccessInterface;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class LoginDataObject implements use_case.LoginUseCase.LoginDataAccessInt
     private final File csvFile;
     private final Map<String, User> users = new HashMap<>();
 
-    private String currentUsername;
+    // private String currentUsername;
 
     /**
      * Reads all saved users from the file. If there's no file yet, makes one.
