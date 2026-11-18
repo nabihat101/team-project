@@ -1,5 +1,9 @@
 package use_case.RankedProfessorCase;
 
-public class RankedProfessorInputBoundary {
-    
+public interface RankedProfessorInputBoundary {
+    /**
+     * Executes the ranked professors use case.
+     * @param inputData the input data
+     */
+    void execute(RankedProfessorInputData inputData);
 }
