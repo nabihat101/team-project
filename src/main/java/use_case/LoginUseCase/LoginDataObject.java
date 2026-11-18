@@ -23,7 +23,7 @@ public class LoginDataObject implements LoginDataAccessInterface {
     private final File csvFile;
     private final Map<String, User> users = new HashMap<>();
 
-    // private String currentUsername;
+    private String currentUsername;
 
     /**
      * Reads all saved users from the file. If there's no file yet, makes one.
@@ -93,9 +93,7 @@ public class LoginDataObject implements LoginDataAccessInterface {
     }
 
     @Override
-    public boolean existsByUsername(String username) {
-        return false;
-    }
+    public boolean existsByUsername(String username) { return users.containsKey(username); }
 
     /**
      * Adds the user (or updates them if they already exist) and saves.
@@ -112,13 +110,11 @@ public class LoginDataObject implements LoginDataAccessInterface {
     }
 
     @Override
-    public void setUsername(String username) {
-
-    }
+    public void setUsername(String username) { currentUsername = username; }
 
     @Override
     public String getUsername() {
-        return "";
+        return currentUsername;
     }
 
 }
