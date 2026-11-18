@@ -15,6 +15,11 @@ public class LoginPresenter implements LoginOutputBoundary {
     private final LoggedInViewModel loggedInViewModel;
     // private final ViewManagerModel viewManagerModel;
 
+    /**
+     * Constructor for the LoginPresenter.
+     * @param loggedInViewModel - the view model for the logged in view
+     * @param loginViewModel - the view model for the login view
+     */
     public LoginPresenter( // ViewManagerModel viewManagerModel,
                           LoggedInViewModel loggedInViewModel,
                           LoginViewModel loginViewModel) {
@@ -23,6 +28,10 @@ public class LoginPresenter implements LoginOutputBoundary {
         this.loginViewModel = loginViewModel;
     }
 
+    /**
+     * Prepares the success view for the login use case.
+     * @param response - the output data from the login use case
+     */
     @Override
     public void prepareSuccessView(Login_OutputData response) {
         // On success, update the loggedInViewModel's state
@@ -39,6 +48,10 @@ public class LoginPresenter implements LoginOutputBoundary {
         // this.viewManagerModel.notifyViewChanged();
     }
 
+    /**
+     * Prepares the failure view for the login use case.
+     * @param error - the error message from the login use case
+     */
     @Override
     public void prepareFailureView(String error) {
         final LoginState loginState = loginViewModel.getState();
