@@ -3,6 +3,7 @@ import java.util.List;
 
 public class Professor {
 
+    private final String id;
     private final String name;
     private final String institution;
     private List<String> researchAreas;
@@ -17,15 +18,25 @@ public class Professor {
      * @param publications  The published papers of the professor
      */
 
-    public Professor(String name, String institution, List<String> researchAreas,
+    public Professor(String  id, String name, String institution, List<String> researchAreas,
                      List<ResearchPaper> publications){
 
+        this.id = id;
         this.name = name;
         this.institution = institution;
         this.researchAreas = List.copyOf(researchAreas);
         this.publications = List.copyOf(publications);
     }
 
+    /**
+     * Returns the id of the professor.
+     *
+     * @return the professor's id
+     */
+    public String getId() {
+        return id;
+    }
+    
     /**
      * Returns the name of the professor.
      *
