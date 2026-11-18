@@ -5,6 +5,7 @@ public class Professor {
 
     private final String name;
     private final String institution;
+    private final String id;
     private List<String> researchAreas;
     private List<ResearchPaper> publications;
 
@@ -12,15 +13,17 @@ public class Professor {
     /**
      * Creates a new professor
      * @param name          The professor's full name
+     * @param id            Professor unique ID
      * @param institution   The institution the professor currently works at
      * @param researchAreas The research areas of the professor
      * @param publications  The published papers of the professor
      */
 
-    public Professor(String name, String institution, List<String> researchAreas,
+    public Professor(String name, String id, String institution, List<String> researchAreas,
                      List<ResearchPaper> publications){
 
         this.name = name;
+        this.id = id;
         this.institution = institution;
         this.researchAreas = List.copyOf(researchAreas);
         this.publications = List.copyOf(publications);
@@ -34,6 +37,16 @@ public class Professor {
     public String getName() {
         return name;
     }
+
+    /**
+     * Returns the ID of the professor.
+     *
+     * @return the professor's ID
+     */
+    public String getId() {
+        return id;
+    }
+
 
     /**
      * Returns the institution the professor works at.
@@ -58,7 +71,7 @@ public class Professor {
      *
      * @return the list of the professor's publications
      */
-    public List<ResearchPaper> publications() {
+    public List<ResearchPaper> getPublications() {
         return publications;
     }
 }
