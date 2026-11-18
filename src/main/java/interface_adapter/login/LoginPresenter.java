@@ -1,6 +1,7 @@
 package interface_adapter.login;
 
 // import interface_adapter.ViewManagerModel;
+import interface_adapter.ViewManagerModel;
 import interface_adapter.loggedin.LoggedInState;
 import interface_adapter.loggedin.LoggedInViewModel;
 import use_case.LoginUseCase.LoginOutputBoundary;
@@ -12,8 +13,7 @@ import use_case.LoginUseCase.Login_OutputData;
 public class LoginPresenter implements LoginOutputBoundary {
 
     private final LoginViewModel loginViewModel;
-    private final LoggedInViewModel loggedInViewModel;
-    // private final ViewManagerModel viewManagerModel;
+    private final ViewManagerModel viewManagerModel;
 
     /**
      * Constructor for the LoginPresenter.
@@ -21,11 +21,11 @@ public class LoginPresenter implements LoginOutputBoundary {
      * @param loginViewModel - the view model for the login view
      */
     public LoginPresenter( // ViewManagerModel viewManagerModel,
-                          LoggedInViewModel loggedInViewModel,
-                          LoginViewModel loginViewModel) {
+                          // LoggedInViewModel loggedInViewModel,
+                           LoginViewModel loginViewModel, ViewManagerModel viewManagerModel) {
         // this.viewManagerModel = viewManagerModel;
-        this.loggedInViewModel = loggedInViewModel;
         this.loginViewModel = loginViewModel;
+        this.viewManagerModel = viewManagerModel;
     }
 
     /**
@@ -35,9 +35,9 @@ public class LoginPresenter implements LoginOutputBoundary {
     @Override
     public void prepareSuccessView(Login_OutputData response) {
         // On success, update the loggedInViewModel's state
-        final LoggedInState loggedInState = loggedInViewModel.getState();
-        loggedInState.setUsername(response.getUsername());
-        this.loggedInViewModel.notifyStateChanged();
+        //final LoggedInState loggedInState = loggedInViewModel.getState();
+        //loggedInState.setUsername(response.getUsername());
+        //this.loggedInViewModel.notifyStateChanged();
 
         // and clear everything from the LoginViewModel's state
         this.loginViewModel.setState(new LoginState());
