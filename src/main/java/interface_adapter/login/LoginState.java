@@ -1,4 +1,4 @@
-package interface_adapter.loggedin;
+package interface_adapter.login;
 
 /**
  * Login state for login view model
@@ -9,6 +9,9 @@ public class LoginState {
     private String loginError;
     private String password = "";
 
+    /**
+     * @return username
+     */
     public String getUserName() {
         return username;
     }
