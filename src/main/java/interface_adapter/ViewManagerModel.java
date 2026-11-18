@@ -37,4 +37,6 @@ public class ViewManagerModel {
     public void addListener(ViewManagerModelListener listener) {
         listeners.add(listener);
     }
+
+    //Add notify state changed method
 }
