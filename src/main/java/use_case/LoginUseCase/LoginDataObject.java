@@ -2,7 +2,7 @@ package use_case.LoginUseCase;
 
 import entities.User;
 import entities.UserFactory;
-// import use_case.LoginUseCase.LoginDataAccessInterface;
+//import use_case.LoginUseCase.LoginDataAccessInterface;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * Saves users to a CSV file so accounts stick around after the app closes.
  */
-public class LoginDataObject implements use_case.LoginUseCase.LoginDataAccessInterface {
+public class LoginDataObject implements LoginDataAccessInterface {
 
     private static final String HEADER = "username,password,interests,institutions";
     // lists are stored in one column, separated by ;
