@@ -1,18 +1,14 @@
 package interface_adapter.login;
 
 /**
- * Login state for login view model
+ * The state for the Login View Model.
  */
 public class LoginState {
-
     private String username = "";
     private String loginError;
     private String password = "";
 
-    /**
-     * @return username
-     */
-    public String getUserName() {
+    public String getUsername() {
         return username;
     }
 
@@ -35,4 +31,5 @@ public class LoginState {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }
