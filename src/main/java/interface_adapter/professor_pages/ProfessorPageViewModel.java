@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class ProfessorPageViewModel {
     private ProfessorPageState state = new ProfessorPageState();
-    private final String VIEW_NAME = "professor page";
+    public static String VIEW_NAME = "professor page";
     private List<ProfessorPageViewModelListener> listeners = new ArrayList<>();
 
     /**
