@@ -264,6 +264,7 @@ public class LoginView extends JPanel implements ActionListener, LoginViewModelL
      * @return the view name
      */
     public String getViewName() {
+
         return viewName;
     }
 
@@ -273,6 +274,7 @@ public class LoginView extends JPanel implements ActionListener, LoginViewModelL
      * @param loginController the login controller
      */
     public void setLoginController(LoginController loginController) {
+
         this.loginController = loginController;
     }
 }
