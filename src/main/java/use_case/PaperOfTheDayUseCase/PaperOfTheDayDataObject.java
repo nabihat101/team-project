@@ -100,7 +100,7 @@ public class PaperOfTheDayDataObject implements PaperOfTheDayDataAccessInterface
     }
 
     /**
-     * Writes the two maps to the JSON file (memory → file).
+     * Writes the two maps to the JSON file (so stores them from memory into file).
      */
     private void saveFile() {
         JSONObject root = new JSONObject();
