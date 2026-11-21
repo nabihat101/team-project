@@ -204,14 +204,31 @@ public class PaperSearchDataObject implements PaperSearchInterface {
      * @return the abstract as plain text, or "" if there isn't one
      */
     private String rebuildAbstract(JSONObject invertedIndex) {
-        // TODO: implement this method
-        // rebuildAbstract(JSONObject invertedIndex): OpenAlex gives {word: [positions]}
-        //   - if null → return ""
-        //   - make a String array as big as the highest position + 1
-        //   - for each word, put it at each of its positions
-        //   - join with spaces and return
+        // OpenAlex gives {word: [positions]}
 
-        return "";
+        if (invertedIndex == null) {
+            return "";
+        }
+
+        int max = -1;
+        for (String word : invertedIndex.keySet()) {
+            JSONArray positions = invertedIndex.getJSONArray(word);
+            for (int i = 0; i < positions.length() ; i++) {
+                max = Math.max(max, positions.getInt(i));
+            }
+        }
+
+        String[] words = new String[max + 1];
+
+        for (String word : invertedIndex.keySet()) {
+            JSONArray positions = invertedIndex.getJSONArray(word);
+            for (int i = 0; i < positions.length(); i++) {
+                words[positions.getInt(i)] = word;
+            }
+        }
+
+
+        return String.join(" ", words);
     }
 
 
