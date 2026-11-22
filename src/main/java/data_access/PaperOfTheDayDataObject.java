@@ -1,10 +1,11 @@
-package use_case.PaperOfTheDayUseCase;
+package data_access;
 
 import entities.PaperOfTheDay;
 import entities.ResearchPaper;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import use_case.LoginUseCase.LoginDataAccessInterface;
+import use_case.PaperOfTheDayUseCase.PaperOfTheDayDataAccessInterface;
 
 import java.io.*;
 import java.nio.file.Files;

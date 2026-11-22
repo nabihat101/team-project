@@ -1,4 +1,4 @@
-package use_case.PaperOfTheDayUseCase;
+package data_access;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -6,6 +6,7 @@ import okhttp3.Response;
 import entities.ResearchPaper;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import use_case.PaperOfTheDayUseCase.PaperSearchInterface;
 
 import java.io.IOException;
 import java.net.URLEncoder;

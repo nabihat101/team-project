@@ -1,5 +1,7 @@
 package app;
 
+import data_access.PaperOfTheDayDataObject;
+import data_access.PaperSearchDataObject;
 import interface_adapter.PaperOfTheDay.PaperOfTheDayController;
 import interface_adapter.PaperOfTheDay.PaperOfTheDayPresenter;
 import interface_adapter.PaperOfTheDay.PaperOfTheDayViewModel;
