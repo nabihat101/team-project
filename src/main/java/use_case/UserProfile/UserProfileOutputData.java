@@ -47,7 +47,7 @@ public class UserProfileOutputData {
      *
      * @return the professors the user has contacted
      */
-    public List<ContactedProfessor> contactedProfessors(){
+    public List<ContactedProfessor> getContactedProfessors(){
         return contactedProfessors;
     }
 
