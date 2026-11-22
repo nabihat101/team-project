@@ -1,4 +1,4 @@
-package use_case.professor_pages;
+package data_access;
 import java.io.IOException;
 
 import entities.Professor;
@@ -8,6 +8,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import use_case.professor_pages.ProfessorDataAccessInterface;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ import java.nio.file.Paths;
 /**
  * Handles retrieving information from professors through API
  */
-public class ProfessDataObject implements ProfessorDataAccessInterface{
+public class ProfessDataObject implements ProfessorDataAccessInterface {
     private final OkHttpClient client;
     private final String apiKey;
 
