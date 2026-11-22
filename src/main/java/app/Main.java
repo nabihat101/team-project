@@ -12,9 +12,6 @@ public class Main {
                 .addPaperOfTheDayUseCase()
                 .build();
 
-        // TESTING ONLY: skip login and open Paper of the Day
-        appBuilder.showPaperOfTheDayFor("dana");
-
         application.setVisible(true);
     }
 }

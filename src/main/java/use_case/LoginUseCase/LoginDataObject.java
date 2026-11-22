@@ -22,15 +22,14 @@ public class LoginDataObject implements LoginDataAccessInterface {
 
     private final File csvFile;
     private final Map<String, User> users = new HashMap<>();
-
+    private UserFactory userFactory;
     private String currentUsername;
 
     /**
      * Reads all saved users from the file. If there's no file yet, makes one.
-     * @param csvPath where the CSV file is
-     * @param userFactory used to turn each row back into a User
      */
-    public LoginDataObject(String csvPath, UserFactory userFactory) {
+    public LoginDataObject() {
+        String csvPath = "users.csv";
         csvFile = new File(csvPath);
 
         if (csvFile.length() == 0) {

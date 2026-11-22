@@ -1,6 +1,5 @@
 package app;
 
-import entities.UserFactory;
 import interface_adapter.PaperOfTheDay.PaperOfTheDayController;
 import interface_adapter.PaperOfTheDay.PaperOfTheDayPresenter;
 import interface_adapter.PaperOfTheDay.PaperOfTheDayViewModel;
@@ -29,7 +28,7 @@ public class AppBuilder {
 
     private LoginView loginView;
     private LoginViewModel loginViewModel;
-    private LoginDataObject loginDataObject = new LoginDataObject("users.csv", new UserFactory());
+    private LoginDataObject loginDataObject = new LoginDataObject();
 
     private PaperOfTheDayView paperOfTheDayView;
     private PaperOfTheDayViewModel paperOfTheDayViewModel;
