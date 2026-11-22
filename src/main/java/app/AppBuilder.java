@@ -88,19 +88,16 @@ public class AppBuilder {
         PaperOfTheDayInputBoundary interactor =
                 new PaperOfTheDayInteractor(paperSearch, paperOfTheDayData, presenter);
         paperOfTheDayView.setPaperOfTheDayController(new PaperOfTheDayController(interactor));
+
+        // when the app switches to Paper of the Day, load it for whoever is logged in
+        viewManagerModel.addListener(() -> {
+            if (PaperOfTheDayViewModel.VIEW_NAME.equals(viewManagerModel.getCurrentViewName())) {
+                paperOfTheDayView.loadFor(loginDataObject.getUsername());
+            }
+        });
         return this;
     }
 
-    /**
-     * FOR TESTING: skips login and opens Paper of the Day for a user.
-     * @param username an existing user
-     * @return this AppBuilder
-     */
-    public AppBuilder showPaperOfTheDayFor(String username) {
-        viewManagerModel.setCurrentViewName(PaperOfTheDayViewModel.VIEW_NAME);
-        paperOfTheDayView.loadFor(username);
-        return this;
-    }
 
     /**
      * Creates main application window

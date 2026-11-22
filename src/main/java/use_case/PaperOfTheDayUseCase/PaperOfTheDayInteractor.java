@@ -45,7 +45,6 @@ public class PaperOfTheDayInteractor implements PaperOfTheDayInputBoundary {
         }
 
         catch (RuntimeException e) {
-            e.printStackTrace();
             presenter.prepareFailView("Couldn't load a paper right now, please try again later.");
             return;
         }
@@ -93,20 +92,24 @@ public class PaperOfTheDayInteractor implements PaperOfTheDayInputBoundary {
     private double score(ResearchPaper paper, List<String> interests) {
         // TODO: implement citations in the scoring algorithm
 
-        String text = ((paper.getTitle() + " " + paper.getAbstractText()).toLowerCase());
-        int matches = 0;
+        String titleText = (paper.getTitle()).toLowerCase();
+        String abstractText = (paper.getAbstractText()).toLowerCase();
+        double matches = 0;
 
         // check which interests match abstract or title text
         for (String interest : interests) {
-            if (text.contains(interest.toLowerCase())) {
+            if (titleText.contains(interest.toLowerCase())) {
                 matches += 1;
+            }
+            else if (abstractText.contains(interest.toLowerCase())) {
+                matches += 0.25;
             }
         }
         double interestScore = 0;
 
         // get interest score an
         if (!interests.isEmpty()) {
-            interestScore = (double) matches / interests.size();
+            interestScore = matches / interests.size();
         }
 
         int yearsOld = LocalDate.now().getYear() - paper.getYear();
