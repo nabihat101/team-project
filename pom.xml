@@ -40,11 +40,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-<<<<<<< HEAD
     <dependencies>
-=======
-<dependencies>
->>>>>>> origin/main
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
@@ -62,16 +58,6 @@
             <artifactId>junit-jupiter</artifactId>
             <version>5.10.2</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20231013</version>
-        </dependency>
-        <dependency>
-            <groupId>com.squareup.okhttp3</groupId>
-            <artifactId>okhttp</artifactId>
-            <version>4.10.0</version>
         </dependency>
     </dependencies>
 
