@@ -2,55 +2,21 @@ package use_case.EmailGeneration;
 
 public class EmailGenerationInputData {
 
-    private final String professorName;
-    private final String professorInstitution;
-    private final String researchAreas;
-    private final String userInterests;
+    private final String emailBrief;
 
     /**
      *
-     * @param professorName           the professor's full name
-     * @param professorInstitution    the current institution of the professor
-     * @param researchAreas           the professor's areas of research
-     * @param userInterests           the user's areas of interest
+     * @param emailBrief the user's instruction for the email
      */
-    public EmailGenerationInputData(String professorName, String professorInstitution,
-                                    String researchAreas, String userInterests) {
-        this.professorName = professorName;
-        this.professorInstitution = professorInstitution;
-        this.researchAreas = researchAreas;
-        this.userInterests = userInterests;
+    public EmailGenerationInputData(String emailBrief) {
+        this.emailBrief = emailBrief;
     }
 
     /**
      *
-     * @return the professor's full name
+     * @return the email brief
      */
-    public String getProfessorName() {
-        return professorName;
-    }
-
-    /**
-     *
-     * @return the current institution of the professor
-     */
-    public String getProfessorInstitution() {
-        return professorInstitution;
-    }
-
-    /**
-     *
-     * @return the professor's areas of research
-     */
-    public String getResearchAreas() {
-        return researchAreas;
-    }
-
-    /**
-     *
-     * @return the user's areas of interest
-     */
-    public String getUserInterests() {
-        return userInterests;
+    public String getEmailBrief() {
+        return emailBrief;
     }
 }
