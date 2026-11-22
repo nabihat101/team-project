@@ -8,6 +8,8 @@ public class Main {
         JFrame application = appBuilder
                 .addLoginView()
                 .addLoginUseCase()
+                .addProfessorPageView()
+                .addProfessorPageUseCase()
                 .build();
 
         application.setVisible(true);

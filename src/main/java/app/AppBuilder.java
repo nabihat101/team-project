@@ -1,12 +1,17 @@
 package app;
 
+import data_access.ProfessDataObject;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.loggedin.LoggedInViewModel;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginPresenter;
 import interface_adapter.login.LoginViewModel;
+import interface_adapter.professor_pages.ProfessorPageController;
+import interface_adapter.professor_pages.ProfessorPagePresenter;
+import interface_adapter.professor_pages.ProfessorPageViewModel;
 import use_case.LoginUseCase.*;
+import use_case.professor_pages.*;
 import view.LoginView;
+import view.ProfessorPageView;
 import view.ViewManager;
 
 import javax.swing.*;
@@ -25,6 +30,10 @@ public class AppBuilder {
     private LoginView loginView;
     private LoginViewModel loginViewModel;
     private LoginDataObject loginDataObject = new LoginDataObject();
+
+    private ProfessorPageView professorPageView;
+    private ProfessorPageViewModel professorPageViewModel;
+    private ProfessorDataAccessInterface professorDataAccessObject;
 
     /**
      * builds components of application together
@@ -47,6 +56,19 @@ public class AppBuilder {
     }
 
     /**
+     * Creates the professor page view.
+     * @return this AppBuilder
+     */
+    public AppBuilder addProfessorPageView() {
+        professorPageViewModel = new ProfessorPageViewModel();
+        professorPageView = new ProfessorPageView(professorPageViewModel, viewManagerModel);
+
+        cardPanel.add(professorPageView, ProfessorPageViewModel.VIEW_NAME);
+
+        return this;
+    }
+
+    /**
      * Creates the use case and init. all objects
      * @return this AppBuilder
      */
@@ -56,6 +78,20 @@ public class AppBuilder {
         LoginInputBoundary loginInteractor = new LoginInteractor(loginDataObject, loginOutputBoundary);
         LoginController loginController = new LoginController(loginInteractor);
         loginView.setLoginController(loginController);
+        return this;
+    }
+
+    /**
+     * Creates the professor page use case and initializes its objects.
+     * @return this AppBuilder
+     */
+    public AppBuilder addProfessorPageUseCase() {
+        ProfessorPageOutputBoundary professorPagePresenter = new ProfessorPagePresenter(professorPageViewModel);
+        professorDataAccessObject = new ProfessDataObject();
+        ProfessorPageInputBoundary professorPageInteractor = new ProfessorPageInteractor(professorDataAccessObject, professorPagePresenter);
+        ProfessorPageController professorPageController = new ProfessorPageController(professorPageInteractor);
+        professorPageView.setProfessorPageController(professorPageController);
+
         return this;
     }
 

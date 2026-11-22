@@ -3,9 +3,9 @@ import java.util.List;
 
 public class Professor {
 
-    private final String id;
     private final String name;
     private final String institution;
+    private final String id;
     private List<String> researchAreas;
     private List<ResearchPaper> publications;
 
@@ -13,30 +13,22 @@ public class Professor {
     /**
      * Creates a new professor
      * @param name          The professor's full name
+     * @param id            Professor unique ID
      * @param institution   The institution the professor currently works at
      * @param researchAreas The research areas of the professor
      * @param publications  The published papers of the professor
      */
 
-    public Professor(String  id, String name, String institution, List<String> researchAreas,
+    public Professor(String id, String name, String institution, List<String> researchAreas,
                      List<ResearchPaper> publications){
 
-        this.id = id;
         this.name = name;
+        this.id = id;
         this.institution = institution;
         this.researchAreas = List.copyOf(researchAreas);
         this.publications = List.copyOf(publications);
     }
 
-    /**
-     * Returns the id of the professor.
-     *
-     * @return the professor's id
-     */
-    public String getId() {
-        return id;
-    }
-    
     /**
      * Returns the name of the professor.
      *
@@ -45,6 +37,16 @@ public class Professor {
     public String getName() {
         return name;
     }
+
+    /**
+     * Returns the ID of the professor.
+     *
+     * @return the professor's ID
+     */
+    public String getId() {
+        return id;
+    }
+
 
     /**
      * Returns the institution the professor works at.
@@ -69,7 +71,7 @@ public class Professor {
      *
      * @return the list of the professor's publications
      */
-    public List<ResearchPaper> publications() {
+    public List<ResearchPaper> getPublications() {
         return publications;
     }
 }
