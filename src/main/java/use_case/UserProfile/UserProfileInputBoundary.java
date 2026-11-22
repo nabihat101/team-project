@@ -6,7 +6,8 @@ public interface UserProfileInputBoundary {
 
     void execute (UserProfileInputData inputData);
 
-    //void updateContactResponseStatus(UpdateContactResponseInputData inputData);
+    void updateContactResponseStatus(String username, String professorName,
+                                     String institution, boolean responded);
 
     void updateUserPreferences(String username, List<String> interests,
                                List<String> institutions);
