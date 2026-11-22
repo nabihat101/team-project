@@ -45,6 +45,7 @@ public class PaperOfTheDayInteractor implements PaperOfTheDayInputBoundary {
         }
 
         catch (RuntimeException e) {
+            e.printStackTrace();
             presenter.prepareFailView("Couldn't load a paper right now, please try again later.");
             return;
         }

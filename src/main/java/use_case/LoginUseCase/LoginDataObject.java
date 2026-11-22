@@ -22,7 +22,7 @@ public class LoginDataObject implements LoginDataAccessInterface {
 
     private final File csvFile;
     private final Map<String, User> users = new HashMap<>();
-    private UserFactory userFactory;
+    private final UserFactory userFactory = new UserFactory();
     private String currentUsername;
 
     /**
