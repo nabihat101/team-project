@@ -19,7 +19,7 @@ public class Professor {
      * @param publications  The published papers of the professor
      */
 
-    public Professor(String name, String id, String institution, List<String> researchAreas,
+    public Professor(String id, String name, String institution, List<String> researchAreas,
                      List<ResearchPaper> publications){
 
         this.name = name;

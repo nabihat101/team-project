@@ -117,7 +117,7 @@ public class ProfessDataObject implements ProfessorDataAccessInterface{
 
         List<ResearchPaper> publications = getPublications(id);
 
-        return new Professor(name, id, institution, researchAreas, publications);
+        return new Professor(id, name, institution, researchAreas, publications);
     }
 
     /**
