@@ -2,6 +2,7 @@ package app;
 
 import data_access.PaperOfTheDayDataObject;
 import data_access.PaperSearchDataObject;
+import data_access.ProfessDataObject;
 import interface_adapter.PaperOfTheDay.PaperOfTheDayController;
 import interface_adapter.PaperOfTheDay.PaperOfTheDayPresenter;
 import interface_adapter.PaperOfTheDay.PaperOfTheDayViewModel;
@@ -9,10 +10,15 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginPresenter;
 import interface_adapter.login.LoginViewModel;
+import interface_adapter.professor_pages.ProfessorPageController;
+import interface_adapter.professor_pages.ProfessorPagePresenter;
+import interface_adapter.professor_pages.ProfessorPageViewModel;
 import use_case.LoginUseCase.*;
 import use_case.PaperOfTheDayUseCase.*;
+import use_case.professor_pages.*;
 import view.LoginView;
 import view.PaperOfTheDayView;
+import view.ProfessorPageView;
 import view.ViewManager;
 
 import javax.swing.*;
@@ -31,6 +37,10 @@ public class AppBuilder {
     private LoginView loginView;
     private LoginViewModel loginViewModel;
     private LoginDataObject loginDataObject = new LoginDataObject();
+
+    private ProfessorPageView professorPageView;
+    private ProfessorPageViewModel professorPageViewModel;
+    private ProfessorDataAccessInterface professorDataAccessObject;
 
     private PaperOfTheDayView paperOfTheDayView;
     private PaperOfTheDayViewModel paperOfTheDayViewModel;
@@ -66,6 +76,31 @@ public class AppBuilder {
     }
 
     /**
+     * Creates the professor page view.
+     * @return this AppBuilder
+     */
+    public AppBuilder addProfessorPageView() {
+        professorPageViewModel = new ProfessorPageViewModel();
+        professorPageView = new ProfessorPageView(professorPageViewModel, viewManagerModel);
+        cardPanel.add(professorPageView, ProfessorPageViewModel.VIEW_NAME);
+        return this;
+    }
+
+    /**
+     * Creates the professor page use case and initializes its objects.
+     * @return this AppBuilder
+     */
+    public AppBuilder addProfessorPageUseCase() {
+        ProfessorPageOutputBoundary professorPagePresenter = new ProfessorPagePresenter(professorPageViewModel);
+        professorDataAccessObject = new ProfessDataObject();
+        ProfessorPageInputBoundary professorPageInteractor =
+                new ProfessorPageInteractor(professorDataAccessObject, professorPagePresenter);
+        ProfessorPageController professorPageController = new ProfessorPageController(professorPageInteractor);
+        professorPageView.setProfessorPageController(professorPageController);
+        return this;
+    }
+
+    /**
      * Creates the Paper of the Day view.
      * @return this AppBuilder
      */
@@ -97,7 +132,6 @@ public class AppBuilder {
         });
         return this;
     }
-
 
     /**
      * Creates main application window
