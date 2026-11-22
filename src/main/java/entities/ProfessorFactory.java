@@ -14,9 +14,9 @@ public class ProfessorFactory {
      * @return the new professor
      */
 
-    public Professor create(String name, String institution, List<String> researchAreas,
+    public Professor create(String id, String name, String institution, List<String> researchAreas,
                             List<ResearchPaper> publications) {
 
-        return new Professor(name, institution, researchAreas, publications);
+        return new Professor(id, name, institution, researchAreas, publications);
     }
 }
