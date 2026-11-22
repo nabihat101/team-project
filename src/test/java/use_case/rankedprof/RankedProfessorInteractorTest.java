@@ -11,7 +11,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/* This unit tests class tests the Ranked Professor Interactor. See individual tests for more info */
+/** This class tests the RankedProfessorInteractor.  
+ * Required things: TestPresenter, InMemoryProfessorDataAccess, and a user DAO.
+*/
+
 class RankedProfessorInteractorTest {
 
     private InMemoryProfessorDataAccess professorDao;
@@ -22,11 +25,13 @@ class RankedProfessorInteractorTest {
         RankedProfessorOutputData successData;
         String errorMessage;
 
+        /** Implementing Methods of Interface 1 */
         @Override
         public void prepareSuccessView(RankedProfessorOutputData outputData) {
             this.successData = outputData;
         }
 
+        /** Implementing Methods of Interface 2 */
         @Override
         public void prepareFailView(String errorMessage) {
             this.errorMessage = errorMessage;
@@ -34,6 +39,7 @@ class RankedProfessorInteractorTest {
     }
 
     @BeforeEach
+    /** Sets up a professor DAO with three professors, and a presenter that records what it receives. */
     void setUp() {
         // Leave publication empty because we won't be using in this use case
         professorDao = new InMemoryProfessorDataAccess();
@@ -47,7 +53,7 @@ class RankedProfessorInteractorTest {
         presenter = new TestPresenter();
     }
 
-    /** Builds an interactor whose user DAO always returns the given user. */
+    /** Builds an interactor whose user DAO always returns the given user. This will be used as interactor in the tests. */
     private RankedProfessorInteractor interactorFor(final User user) {
         UserDataAccessInterface userDao = new UserDataAccessInterface() {
             @Override
@@ -58,6 +64,10 @@ class RankedProfessorInteractorTest {
         return new RankedProfessorInteractor(userDao, professorDao, presenter);
     }
 
+    /** Returns the names of the professors in the given output data. 
+     * @param RankedProfessorOutputData data the output data to extract names from
+     * @return List<String> the names of the professors in the output data
+    */
     private List<String> names(RankedProfessorOutputData data) {
         List<String> result = new ArrayList<>();
         for (RankedProfessorEntry entry : data.getProfessors()) {
@@ -66,6 +76,7 @@ class RankedProfessorInteractorTest {
         return result;
     }
 
+    /* Tests that selected topics override the user's profile topics. */
     @Test
     void selectedTopicsOverrideProfile() {
         User user = new User("sam", "password", List.of("Databases"), List.of());
@@ -77,6 +88,7 @@ class RankedProfessorInteractorTest {
         assertEquals(List.of("Robotics"), presenter.successData.getTopicsUsed());
     }
 
+    /* Tests that if no topics are selected, the user's profile topics are used. */
     @Test
     void nothingSelectedFallsBackToProfile() {
         User user = new User("sam", "password", List.of("Databases"), List.of());
@@ -88,6 +100,7 @@ class RankedProfessorInteractorTest {
         assertEquals(List.of("Databases"), presenter.successData.getTopicsUsed());
     }
 
+    /* Tests that professors with more matching topics are ranked first. */
     @Test
     void moreMatchesRankFirst() {
         User user = new User("sam", "password", List.of("Machine Learning"), List.of());
@@ -100,6 +113,7 @@ class RankedProfessorInteractorTest {
                 presenter.successData.getProfessors().get(0).getMatchedAreas());
     }
 
+    /* Tests that if two professors have the same number of matching topics, they are sorted alphabetically by name. */
     @Test
     void tiesAreSortedAlphabeticallyByName() {
         User user = new User("sam", "password", List.of("Machine Learning"), List.of());
@@ -110,6 +124,7 @@ class RankedProfessorInteractorTest {
         assertEquals(List.of("Ada Lovelace", "Alan Turing"), names(presenter.successData));
     }
 
+    /* Tests that no matching professors results in an error. */
     @Test
     void noMatchingProfessorsFails() {
         User user = new User("sam", "password", List.of("Machine Learning"), List.of());
@@ -120,6 +135,7 @@ class RankedProfessorInteractorTest {
         assertNotNull(presenter.errorMessage);
     }
 
+    /* Tests that if the user has no interests and selects no topics, an error is returned. */
     @Test
     void noInterestsAndNothingSelectedFails() {
         User user = new User("sam", "password", List.of(), List.of());
