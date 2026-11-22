@@ -61,7 +61,7 @@ public class AppBuilder {
      */
     public AppBuilder addProfessorPageView() {
         professorPageViewModel = new ProfessorPageViewModel();
-        professorPageView = new ProfessorPageView(professorPageViewModel);
+        professorPageView = new ProfessorPageView(professorPageViewModel, viewManagerModel);
 
         cardPanel.add(professorPageView, ProfessorPageViewModel.VIEW_NAME);
 
