@@ -4,7 +4,7 @@ import java.util.List;
 
 import entities.Professor;
 
-public interface ProfessorDataAccessInterface {
+public interface RankedProfessorDataAccessInterface {
         /**
      * Returns professors whose research areas overlap with at least one of the given areas
      * and who are at an institution matching one of the given locations.

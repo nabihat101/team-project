@@ -17,7 +17,7 @@ public class RankedProfessorInteractor implements RankedProfessorInputBoundary {
      */
 
     private final UserDataAccessInterface userDataAccess;
-    private final ProfessorDataAccessInterface professorDataAccess;
+    private final RankedProfessorDataAccessInterface professorDataAccess;
     private final RankedProfessorOutputBoundary presenter;
 
 
@@ -29,7 +29,7 @@ public class RankedProfessorInteractor implements RankedProfessorInputBoundary {
      * @param presenter the output boundary for presenting results
      */
     public RankedProfessorInteractor(UserDataAccessInterface userDataAccess,
-                                      ProfessorDataAccessInterface professorDataAccess,
+                                      RankedProfessorDataAccessInterface professorDataAccess,
                                       RankedProfessorOutputBoundary presenter) {
         this.userDataAccess = userDataAccess;
         this.professorDataAccess = professorDataAccess;

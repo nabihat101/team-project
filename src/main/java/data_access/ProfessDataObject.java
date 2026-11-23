@@ -9,6 +9,7 @@ import okhttp3.Response;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import use_case.professor_pages.ProfessorDataAccessInterface;
+import use_case.RankedProfessorCase.RankedProfessorDataAccessInterface;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ import java.nio.file.Paths;
 /**
  * Handles retrieving information from professors through API
  */
-public class ProfessDataObject implements ProfessorDataAccessInterface {
+public class ProfessDataObject implements ProfessorDataAccessInterface, RankedProfessorDataAccessInterface {
     private final OkHttpClient client;
     private final String apiKey;
 
@@ -190,8 +191,14 @@ public class ProfessDataObject implements ProfessorDataAccessInterface {
 
             publications.add(paper);
         }
-
         return publications;
+    }
+
+
+
+
+    public List<Professor> findByAreasAndLocations(List<String> areas, List<String> locations){
+        return List.of();
     }
 
 }

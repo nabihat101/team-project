@@ -1,14 +1,14 @@
 package use_case.rankedprof;
 
 import entities.Professor;
-import use_case.RankedProfessorCase.ProfessorDataAccessInterface;
+import use_case.RankedProfessorCase.RankedProfessorDataAccessInterface;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 /* USED ONLY FOR TESTS; THIS CLASS IS A MOCK DAO */
-public class InMemoryProfessorDataAccess implements ProfessorDataAccessInterface {
+public class InMemoryProfessorDataAccess implements RankedProfessorDataAccessInterface {
 
     private final List<Professor> professors = new ArrayList<>();
 
