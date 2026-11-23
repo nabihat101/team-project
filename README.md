@@ -66,7 +66,7 @@ The user clicks on a button to create an account or a button to login
 2. System prompts user to reenter credentials
 3. Use case continues at step 8
 
-### Use Case 2: View a ranked list of Matching Professors
+### Use Case 2: View a Ranked List of Matching Professors
 #### Primary Actor: 
 User that already has an account
 #### Preconditions: 
@@ -259,7 +259,7 @@ The user clicks on the "My Profile" button from the home page
 | Team Member | MVP Use Case |
 |-------------|--------------|
 | Nabiha | Use Case #4 - Professor Page|
-| Yusyra | Use Case #2 - Ranked list Professors|
+| Yusyra | Use Case #2 - Ranked List of Professors|
 | Dana | Use Case #3 - Recommended Papers Systems|
 | Jasmine | Use Case #5 - Cold Emailing|
 | Iman | Use Case #6 - User System|
@@ -269,7 +269,7 @@ The user clicks on the "My Profile" button from the home page
 ### User
 Instances: username, password, research interests, location preferences
 ### Professor
-Instances: name, institution, research areas, publications
+Instances: id, name, institution, research areas, publications
 ### ResearchPaper
 Instances: id, title, authors, year, abstract, url
 
