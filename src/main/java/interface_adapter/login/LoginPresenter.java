@@ -47,6 +47,9 @@ public class LoginPresenter implements LoginOutputBoundary {
         // switch to the logged in view
         // this.viewManagerModel.setState(LoggedInViewModel.VIEW_NAME);
         // this.viewManagerModel.notifyViewChanged();
+
+        // temporary: switch to paper of the day page
+        this.viewManagerModel.setCurrentViewName(PaperOfTheDayViewModel.VIEW_NAME);
     }
 
     /**

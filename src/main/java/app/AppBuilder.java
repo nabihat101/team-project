@@ -86,6 +86,7 @@ public class AppBuilder {
         return this;
     }
 
+
     /**
      * Creates the professor page use case and initializes its objects.
      * @return this AppBuilder

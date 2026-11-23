@@ -15,5 +15,6 @@ public class Main {
                 .build();
 
         application.setVisible(true);
+
     }
 }
