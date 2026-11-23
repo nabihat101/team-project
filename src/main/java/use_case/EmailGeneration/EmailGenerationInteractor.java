@@ -34,9 +34,25 @@ public class EmailGenerationInteractor implements EmailGenerationInputBoundary {
         final List<String> researchAreas = professor.getResearchAreas();
         final String professorInstitution = professor.getInstitution();
         final List<String> userInterests = user.getInterests();
+        final String brief = emailGenerationInputData.getEmailBrief();
 
-        if (userInterests.isEmpty()) {}
+        try {
+            if (userInterests.isEmpty()) {
+                emailPresenter.prepareFailureView("The user has not provided any relevant interests.");
+            } else {
+                String research = String.join(",", researchAreas);
+                String interest = String.join(",", userInterests);
+                final String context = "Professor " + professorName + " from " + professorInstitution +
+                        " with research in " + research + ", user is interested in " + interest;
+                final String instruction = "Generate a cold email using the given information for the purpose of " + brief;
+                ;
+                final String emailContent = emailDataAccessObject.generateEmail(context, instruction).toString();
 
-
+                EmailGenerationOutputData emailGenerationOutputData = new EmailGenerationOutputData(emailContent);
+                emailPresenter.prepareSuccessView(emailGenerationOutputData);
+            }
+        } catch (RuntimeException e) {
+            emailPresenter.prepareFailureView("Unable to generate email.");
+        }
     }
 }

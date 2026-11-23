@@ -3,6 +3,8 @@ package use_case.EmailGeneration;
 import entities.User;
 import entities.Professor;
 
+import java.util.List;
+
 public interface EmailGenerationDataAccessInterface {
 
     /**
@@ -18,4 +20,12 @@ public interface EmailGenerationDataAccessInterface {
      * @return the corresponding User object
      */
     User getUserByUsername(String username);
+
+    /**
+     *
+     * @param context professor and user information
+     * @param instruction instruction for generate an email
+     * @return the email subject and body
+     */
+    List<String> generateEmail(String context, String instruction);
 }

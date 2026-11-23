@@ -1,32 +1,21 @@
 package use_case.EmailGeneration;
 
 public class EmailGenerationOutputData {
-    private final String subject;
-    private final String body;
+    private final String content;
 
     /**
      *
-     * @param subject the subject of the email
-     * @param body the body of the email
+     * @param content the content of the generated email
      */
-    public EmailGenerationOutputData(String subject, String body) {
-        this.subject = subject;
-        this.body = body;
+    public EmailGenerationOutputData(String content) {
+        this.content = content;
     }
 
     /**
      *
-     * @return the subject of the email
+     * @return the content of the email
      */
-    public String getSubject() {
-        return subject;
-    }
-
-    /**
-     *
-     * @return the body of the email
-     */
-    public String getBody() {
-        return body;
+    public String getContent() {
+        return content;
     }
 }
