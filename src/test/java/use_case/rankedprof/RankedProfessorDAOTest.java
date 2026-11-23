@@ -1,6 +1,6 @@
 package use_case.rankedprof;
 
-import data_access.ProfessDataObject;
+import data_access.RankedProfessorDAO;
 import entities.Professor;
 
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
 * This is technically not a JUnit test, just a sanity check. Ignore file. */
 public class RankedProfessorDAOTest {
     public static void main(String[] args) {
-        ProfessDataObject dao = new ProfessDataObject();
+        RankedProfessorDAO dao = new RankedProfessorDAO();
 
         List<String> topics = dao.getTopicOptions();
         List<String> locations = dao.getLocationOptions();
