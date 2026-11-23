@@ -12,7 +12,11 @@ import use_case.FilterOptionsDataAccessInterface;
 import use_case.RankedProfessorCase.RankedProfessorDataAccessInterface;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -37,7 +41,7 @@ public class RankedProfessorDAO implements
     private final Map<String, String> institutionIds = new LinkedHashMap<>();
 
     /**
-     * Inititalizes fields by creating a new client and using method defined in function for key
+     * Initializes fields by creating a new client and using method defined in function for key
      */
     public RankedProfessorDAO() {
         this.client = new OkHttpClient();
@@ -82,23 +86,11 @@ public class RankedProfessorDAO implements
         }
     }
 
-    /**
-     * Creates the JSON object for the professor that's to be passed on to another method
-     * @param profID - Professor ID given my openAlex api
-     * @return JSON object of the professor
-     */
-    private JSONObject getProfessorJSON (String profID) throws IOException {
-        String url = "https://api.openalex.org/authors/" + profID + "?api_key=" + apiKey;
-
-        String response = makeAPIRequest(url);
-        return new JSONObject(response);
-    }
-
 
     // FOR FILTER DATA OPTIONS, USED IN BOTH RANKED PROFESSOR USE CASE & SIGNUP USE CASE
     /**
      * Fetches a list of all topics available in API.
-     * @see loadOptionsIfNeeded for helper. Loads and saves all options first time so program
+     * @see #loadOptionsIfNeeded for helper. Loads and saves all options first time so program
      * doesn't have to repeat it every time.
      * @return list of all topics
      */
@@ -111,7 +103,7 @@ public class RankedProfessorDAO implements
 
     /**
      * Fetches a list of all institutions available in API (only Canada).
-     * @see loadOptionsIfNeeded for helper. Loads and saves all options first time so program
+     * @see #loadOptionsIfNeeded for helper. Loads and saves all options first time so program
      * doesn't have to repeat it every time.
      * @return list of all institutions in Canada.
      */
@@ -124,8 +116,8 @@ public class RankedProfessorDAO implements
     /**
      * Loads ids and display names from API, depending on subfield or institution. Gets called by implementations of
      * FilterOptionsDA Interface. Uses two helpers (in order to follow SRP from SOLID):
-     * @see fillMap, which populates the respective instance attribute with info from API
-     * @see getResults, which makes the request given the API
+     * @see #fillMap, which populates the respective instance attribute with info from API
+     * @see #getResults, which makes the request given the API
      */
     private void loadOptionsIfNeeded() {
         // https://openalex.org/fields/17
@@ -145,9 +137,9 @@ public class RankedProfessorDAO implements
 
     /** Populates the linked hashmap with JSON info from API: (display name, id).
      * For id, the API gives it in the format of {"id": "openalex.org/subfields/id"}, so the helper calls
-     * @see lastPart to only keep id.
-     * @param map, the linked hashmap to populate
-     * @param results, the JSONArray to parse from
+     * @see #lastPart to only keep id.
+     * @param #map, the linked hashmap to populate
+     * @param #results, the JSONArray to parse from
      * */
     private void fillMap(Map<String, String> map, JSONArray results) {
         for (int i = 0; i < results.length(); i++) {
@@ -160,7 +152,7 @@ public class RankedProfessorDAO implements
     }
 
     /** Makes a request on API given and returns the "results" array of the response. Helper for
-     * @see loadOptionsIfNeeded
+     * @see #loadOptionsIfNeeded
      * @param url to make request to
      *  */
     private JSONArray getResults(String url) {
@@ -172,7 +164,7 @@ public class RankedProfessorDAO implements
     }
 
     /** Only keeps last part of a url. Used by
-     * @see fillMap to only keep id from id url: eg. "https://openalex.org/A123" to "A123".
+     * @see #fillMap to only keep id from id url: eg. "https://openalex.org/A123" to "A123".
      * @param url, to take id out of
      * @return the id from url. */
     private String lastPart(String url) {
@@ -186,7 +178,7 @@ public class RankedProfessorDAO implements
      * Gets URL ids from the {@link subfieldIds} and {@link institutionIds} populated by
      * @see loadOptionsIfNeeded.
      * Uses ids to make new URL for author filtering, then uses
-     * {@code getResults} to get info from URL, and {@code professorFromJson} to parse information
+     * {@code #getResults} to get info from URL, and {@code #professorFromJson} to parse information
      * from URL.
      *
      * @param areas, the subfields to match with professors
@@ -241,7 +233,7 @@ public class RankedProfessorDAO implements
         // Add professors that match into the
         JSONArray results = getResults(url);
         for (int i = 0; i < results.length(); i++) {
-            professors.add(professorFromJson(results.getJSONObject(i)));
+            professors.add(professorFromJson(results.getJSONObject(i), locations));
         }
         return professors;
     }
@@ -253,7 +245,7 @@ public class RankedProfessorDAO implements
      * @param json, a JSONObject received from function that called the API
      * @return Professor Entity
      * */
-    private Professor professorFromJson(JSONObject json) {
+    private Professor professorFromJson(JSONObject json, List<String> preferredInstitutions) {
         // id
         String id = lastPart(json.optString("id", ""));
 
@@ -263,10 +255,30 @@ public class RankedProfessorDAO implements
         // institution
         String institution = "";
         JSONArray institutions = json.optJSONArray("last_known_institutions");
-        if (institutions != null && !institutions.isEmpty()) {
-            // USING optJSONobject() instead of getJSONObject() so no error if object missing
-            institution = institutions.getJSONObject(0).optString("display_name", "");
+
+        /* had to add options 1 and 2 because API was showing most recent affiliation, like Google for Geoffrey Hinton
+        instead of UofT. */
+        if (institutions != null) {
+            // 1. An institution the user selected
+            for (int i = 0; i < institutions.length() && institution.isEmpty(); i++) {
+                String instName = institutions.getJSONObject(i).optString("display_name", "");
+                if (preferredInstitutions.contains(instName)) {
+                    institution = instName;
+                }
+            }
+            // 2. Otherwise a Canadian institution
+            for (int i = 0; i < institutions.length() && institution.isEmpty(); i++) {
+                JSONObject inst = institutions.getJSONObject(i);
+                if ("CA".equals(inst.optString("country_code", ""))) {
+                    institution = inst.optString("display_name", "");
+                }
+            }
+            // 3. Otherwise the first one
+            if (institution.isEmpty() && institutions.length() > 0) {
+                institution = institutions.getJSONObject(0).optString("display_name", "");
+            }
         }
+
 
         // research areas
         List<String> researchAreas = new ArrayList<>();
