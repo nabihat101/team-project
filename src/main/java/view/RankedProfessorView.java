@@ -1,4 +1,4 @@
-package view.rankedProf;
+package view;
 
 public class RankedProfessorView {
     
