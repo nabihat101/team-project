@@ -71,8 +71,14 @@ public class RankedProfessorInteractor implements RankedProfessorInputBoundary {
         }
 
 
-        final List<Professor> candidates =
-                professorDataAccess.findByAreasAndLocations(topics, locations);
+        final List<Professor> candidates;
+            try {
+                candidates = professorDataAccess.findByAreasAndLocations(topics, locations);
+            }
+            catch (RuntimeException exception) {
+                presenter.prepareFailView("Couldn't load professors right now. Please try again later.");
+                return;
+            }
         final List<RankedProfessorEntry> ranked = rank(candidates, topics);
 
         // Send Error Message if no professors matched the filters
