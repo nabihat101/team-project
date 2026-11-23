@@ -38,8 +38,6 @@ public class RankedProfessorInteractor implements RankedProfessorInputBoundary {
 
     /**
      * Executes the ranked professor use case.
-     * @TODO: Add more once this is finalized
-     *
      * @param inputData the input data for the use case
      */
     @Override

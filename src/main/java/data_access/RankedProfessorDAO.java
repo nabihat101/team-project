@@ -238,11 +238,11 @@ public class RankedProfessorDAO implements
         return professors;
     }
 
-    /** Parses JSONObject received to build a Professor Object. Doesn't populate Research Area,
-     * that is dealt with later on.
+    /** Parses JSONObject received to build a Professor Object. Publications stay empty: the page loads them later.
      * NOTE: USES optJSON___() instead of getJSON___() so no error if object missing
-     * Publications stay empty: the page loads them later.
-     * @param json, a JSONObject received from function that called the API
+     * @param json a JSONObject received from function that called the API
+     * @param preferredInstitutions used to make sure location returned contains the preferred institution instead of
+     *                              the most recent one
      * @return Professor Entity
      * */
     private Professor professorFromJson(JSONObject json, List<String> preferredInstitutions) {
