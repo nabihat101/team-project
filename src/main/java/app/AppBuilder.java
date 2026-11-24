@@ -4,6 +4,7 @@ import data_access.PaperOfTheDayDataObject;
 import data_access.PaperSearchDataObject;
 import data_access.ProfessDataObject;
 import data_access.RankedProfessorDAO;
+import data_access.UserProfileDataAccessObject;
 import interface_adapter.PaperOfTheDay.PaperOfTheDayController;
 import interface_adapter.PaperOfTheDay.PaperOfTheDayPresenter;
 import interface_adapter.PaperOfTheDay.PaperOfTheDayViewModel;
@@ -18,12 +19,15 @@ import interface_adapter.rankedProf.RankedProfessorController;
 import interface_adapter.rankedProf.RankedProfessorPresenter;
 import interface_adapter.rankedProf.RankedProfessorState;
 import interface_adapter.rankedProf.RankedProfessorViewModel;
+import interface_adapter.userprofile.UserProfileController;
+import interface_adapter.userprofile.UserProfilePresenter;
+import interface_adapter.userprofile.UserProfileViewModel;
 import use_case.LoginUseCase.*;
 import use_case.PaperOfTheDayUseCase.*;
-import use_case.RankedProfessorCase.RankedProfessorDataAccessInterface;
 import use_case.RankedProfessorCase.RankedProfessorInputBoundary;
 import use_case.RankedProfessorCase.RankedProfessorInteractor;
 import use_case.RankedProfessorCase.RankedProfessorOutputBoundary;
+import use_case.UserProfile.*;
 import use_case.professor_pages.*;
 import view.*;
 
@@ -47,13 +51,16 @@ public class AppBuilder {
     private ProfessorPageView professorPageView;
     private ProfessorPageViewModel professorPageViewModel;
     private ProfessorDataAccessInterface professorDataAccessObject;
+    private ProfessorPageController professorPageController;
 
     private PaperOfTheDayView paperOfTheDayView;
     private PaperOfTheDayViewModel paperOfTheDayViewModel;
 
     private RankedProfessorView rankedProfView;
     private RankedProfessorViewModel rankedProfViewModel;
-    private ProfessorPageController professorPageController;
+
+    private UserProfileView userProfileView;
+    private UserProfileViewModel userProfileViewModel;
 
     /**
      * builds components of application together
@@ -95,7 +102,6 @@ public class AppBuilder {
         cardPanel.add(professorPageView, ProfessorPageViewModel.VIEW_NAME);
         return this;
     }
-
 
     /**
      * Creates the professor page use case and initializes its objects.
@@ -159,7 +165,6 @@ public class AppBuilder {
         return this;
     }
 
-
     /**
      * Creates the Ranked Professor use case and connects it to the view.
      * @return this AppBuilder
@@ -175,7 +180,7 @@ public class AppBuilder {
 
         loadFilterOptions(rankedProfDao);
 
-        // when the app switches to Paper of the Day, load it for whoever is logged in
+        // when the app switches to Ranked Professors, load it for whoever is logged in
         viewManagerModel.addListener(() -> {
             if (RankedProfessorViewModel.VIEW_NAME.equals(viewManagerModel.getCurrentViewName())) {
                 rankedProfView.loadFor(loginDataObject.getUsername());
@@ -198,7 +203,39 @@ public class AppBuilder {
         rankedProfViewModel.notifyStateChanged();
     }
 
+    /**
+     * Creates the user profile view.
+     * @return this AppBuilder
+     */
+    public AppBuilder addUserProfileView() {
+        userProfileViewModel = new UserProfileViewModel();
+        userProfileView = new UserProfileView(userProfileViewModel, viewManagerModel);
+        cardPanel.add(userProfileView, UserProfileViewModel.VIEW_NAME);
+        return this;
+    }
 
+    /**
+     * Creates the user profile use case and loads the logged-in user's profile
+     * when the profile page opens.
+     * @return this AppBuilder
+     */
+    public AppBuilder addUserProfileUseCase() {
+        UserProfileDataAccessInterface dataAccess = new UserProfileDataAccessObject();
+        UserProfileOutputBoundary presenter = new UserProfilePresenter(userProfileViewModel);
+        UserProfileInputBoundary interactor = new UserProfileInteractor(dataAccess, presenter);
+        UserProfileController controller = new UserProfileController(interactor);
+        userProfileView.setUserProfileController(controller);
+
+        viewManagerModel.addListener(() -> {
+            if (UserProfileViewModel.VIEW_NAME.equals(viewManagerModel.getCurrentViewName())) {
+                String username = loginDataObject.getUsername();
+                if (username != null && !username.isBlank()) {
+                    controller.execute(username);
+                }
+            }
+        });
+        return this;
+    }
 
     /**
      * Creates main application window
@@ -212,7 +249,11 @@ public class AppBuilder {
         // start on the login screen
         viewManagerModel.setCurrentViewName(LoginViewModel.VIEW_NAME);
 
-        application.pack();
+        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        int width = (int) (screen.width * 0.96);
+        int height = (int) (screen.height * 0.94);
+        application.setMinimumSize(new Dimension(Math.min(760, width), Math.min(560, height)));
+        application.setSize(width, height);
         application.setLocationRelativeTo(null);
         return application;
     }
