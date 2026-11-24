@@ -1,6 +1,7 @@
 package entities;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ContactedProfessor extends Professor {
@@ -10,19 +11,21 @@ public class ContactedProfessor extends Professor {
 
     /**
      *
+     * @param id            The professor's unique ID
      * @param name          The professor's full name
      * @param institution   The institution the professor currently works at
      * @param contactedOn   The date the professor was contacted on
      * @param responded     Whether the professor has responded or not
      */
-    public ContactedProfessor(String name, String institution, LocalDate contactedOn,
+    public ContactedProfessor(String id, String name, String institution, LocalDate contactedOn,
                               boolean responded) {
-        this(name, institution, List.of(), List.of(), contactedOn, responded);
+        this(id, name, institution, new ArrayList<>(), new ArrayList<>(), contactedOn, responded);
     }
 
 
     /**
      *
+     * @param id                The professor's unique ID
      * @param name              The professor's full name
      * @param institution       The institution the professor currently works at
      * @param researchAreas     The research areas of the professor
@@ -30,10 +33,11 @@ public class ContactedProfessor extends Professor {
      * @param contactedOn       The date the professor was contacted on
      * @param responded         Whether the professor has responded or not
      */
-    public ContactedProfessor(String name, String institution, List<String> researchAreas,
+    public ContactedProfessor(String id, String name, String institution,
+                              List<String> researchAreas,
                               List<ResearchPaper> publications, LocalDate contactedOn,
                               boolean responded) {
-        super(name, institution, researchAreas, publications);
+        super(id, name, institution, researchAreas, publications);
         this.contactedOn = contactedOn;
         this.responded = responded;
     }
