@@ -284,6 +284,8 @@ We plan to use the OpenAlex API as a source for research data so that we don't h
 ### UML Class Diagram
 - #### Ranked Professors Use Case (Interface Adapters + Use Case Interactor):
 ![Ranked Professor Use Case Snippet](uml1.png)
+- #### Ranked Professors Use Case (Interface Adapters + Framework&Drivers):
+![Ranked Professor View Snippet](uml2.png)
 
 ### Sequence Diagrams
 ---
