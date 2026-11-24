@@ -16,8 +16,8 @@ import java.net.URI;
 import interface_adapter.ViewManagerModel;
 
 // May need to change the imports depending on name
-//import interface_adapter.landing.LandingViewModel;
-//import interface_adapter.user_profile.UserProfileViewModel;
+import interface_adapter.rankedProf.RankedProfessorViewModel;
+import interface_adapter.userprofile.UserProfileViewModel;
 
 /**
  * Displays a professor's information and publications.
@@ -263,10 +263,10 @@ public class ProfessorPageView extends JPanel implements ActionListener, Profess
     @Override
     public void actionPerformed(ActionEvent evt) {
         if (evt.getSource() == homeButton) {
-            //viewManagerModel.setCurrentViewName(LandingViewModel.VIEW_NAME);
+            viewManagerModel.setCurrentViewName(RankedProfessorViewModel.VIEW_NAME);
         }
         else if (evt.getSource() == profileButton) {
-            //viewManagerModel.setCurrentViewName(UserProfileViewModel.VIEW_NAME);
+            viewManagerModel.setCurrentViewName(UserProfileViewModel.VIEW_NAME);
         }
     }
 }
