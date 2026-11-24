@@ -11,7 +11,7 @@ public class signupOutputData {
 //    private final List<String> topics;
 //    private final List<String> locations;
 
-    public signupOutputData(String username, List<String> topics, List<String> locations) {
+    public signupOutputData(String username) {
         this.username = username;
 //        this.topics = topics;
 //        this.locations = locations;
