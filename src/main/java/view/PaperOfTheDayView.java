@@ -4,6 +4,7 @@ import interface_adapter.PaperOfTheDay.PaperOfTheDayController;
 import interface_adapter.PaperOfTheDay.PaperOfTheDayState;
 import interface_adapter.PaperOfTheDay.PaperOfTheDayViewModel;
 import interface_adapter.PaperOfTheDay.PaperOfTheDayViewModelListener;
+import interface_adapter.ViewManagerModel;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -62,6 +63,10 @@ public class PaperOfTheDayView extends JPanel implements PaperOfTheDayViewModelL
 
     private String currentUrl = "";
 
+    // back/home button
+    private final JButton backButton = new JButton("← Back to home");
+    private Runnable onBack = () -> { };
+
     /**
      * Creates the Paper of the Day view and listens for view model changes.
      *
@@ -70,6 +75,7 @@ public class PaperOfTheDayView extends JPanel implements PaperOfTheDayViewModelL
     public PaperOfTheDayView(PaperOfTheDayViewModel paperOfTheDayViewModel) {
         this.paperOfTheDayViewModel = paperOfTheDayViewModel;
         this.paperOfTheDayViewModel.addListener(this);
+
 
         setLayout(new BorderLayout());
         setBackground(PAGE_BG);
@@ -80,6 +86,7 @@ public class PaperOfTheDayView extends JPanel implements PaperOfTheDayViewModelL
         add(makeCard(), BorderLayout.CENTER);
 
         readButton.addActionListener(evt -> openPaper());
+        backButton.addActionListener(evt -> onBack.run());
 
         // nothing to show until the presenter sends a paper
         card.setVisible(false);
@@ -94,6 +101,15 @@ public class PaperOfTheDayView extends JPanel implements PaperOfTheDayViewModelL
         final JPanel header = new JPanel();
         header.setLayout(new BoxLayout(header, BoxLayout.Y_AXIS));
         header.setOpaque(false);
+
+        backButton.setForeground(BLUE);
+        backButton.setContentAreaFilled(false);
+        backButton.setBorderPainted(false);
+        backButton.setFocusPainted(false);
+        backButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        backButton.setAlignmentX(LEFT_ALIGNMENT);
+        header.add(backButton);
+        header.add(Box.createVerticalStrut(8));
 
         final String today = LocalDate.now().format(DateTimeFormatter.ofPattern("EEEE, MMMM d"));
         final JLabel kicker = new JLabel("PAPER OF THE DAY  ·  " + today.toUpperCase());
@@ -320,6 +336,15 @@ public class PaperOfTheDayView extends JPanel implements PaperOfTheDayViewModelL
      */
     public void setPaperOfTheDayController(PaperOfTheDayController paperOfTheDayController) {
         this.paperOfTheDayController = paperOfTheDayController;
+    }
+
+    /**
+     * Sets what happens when the back button is clicked.
+     *
+     * @param onBack the action to run
+     */
+    public void setOnBack(Runnable onBack) {
+        this.onBack = onBack;
     }
 
     /**
