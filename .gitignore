@@ -34,7 +34,14 @@ build/
 ### VS Code ###
 .vscode/
 
+api_key.properties
+
 ### Mac OS ###
 .DS_Store
 
 .idea/
+
+### Local secrets & test data lol ###
+api_key.properties
+users.csv
+paper_of_the_day.json
