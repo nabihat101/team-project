@@ -16,7 +16,7 @@ public class UserFactory {
      * @return User
      */
     public User create(String username, String password, List<String> interests,
-                   List<String> institutions){
+                   List<String> institutions) {
 
     return new User(username, password, interests, institutions);
 }

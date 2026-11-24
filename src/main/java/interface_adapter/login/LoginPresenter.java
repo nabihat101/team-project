@@ -6,6 +6,7 @@ import interface_adapter.loggedin.LoggedInState;
 import interface_adapter.loggedin.LoggedInViewModel;
 import use_case.LoginUseCase.LoginOutputBoundary;
 import use_case.LoginUseCase.Login_OutputData;
+import interface_adapter.PaperOfTheDay.PaperOfTheDayViewModel;
 
 /**
  * The Presenter for the Login Use Case.
@@ -17,11 +18,11 @@ public class LoginPresenter implements LoginOutputBoundary {
 
     /**
      * Constructor for the LoginPresenter.
-     * @param loggedInViewModel - the view model for the logged in view
-     * @param loginViewModel - the view model for the login view
+     * //@param loggedInViewModel - the view model for the logged in view
+     * //@param loginViewModel - the view model for the login view
      */
-    public LoginPresenter( // ViewManagerModel viewManagerModel,
-                          // LoggedInViewModel loggedInViewModel,
+    public LoginPresenter( //ViewManagerModel viewManagerModel,
+                          //LoggedInViewModel loggedInViewModel,
                            LoginViewModel loginViewModel, ViewManagerModel viewManagerModel) {
         // this.viewManagerModel = viewManagerModel;
         this.loginViewModel = loginViewModel;
@@ -46,6 +47,9 @@ public class LoginPresenter implements LoginOutputBoundary {
         // switch to the logged in view
         // this.viewManagerModel.setState(LoggedInViewModel.VIEW_NAME);
         // this.viewManagerModel.notifyViewChanged();
+
+        // temporary: switch to paper of the day page
+        this.viewManagerModel.setCurrentViewName(PaperOfTheDayViewModel.VIEW_NAME);
     }
 
     /**
