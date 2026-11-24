@@ -3,6 +3,7 @@ package app;
 import data_access.PaperOfTheDayDataObject;
 import data_access.PaperSearchDataObject;
 import data_access.ProfessDataObject;
+import data_access.RankedProfessorDAO;
 import interface_adapter.PaperOfTheDay.PaperOfTheDayController;
 import interface_adapter.PaperOfTheDay.PaperOfTheDayPresenter;
 import interface_adapter.PaperOfTheDay.PaperOfTheDayViewModel;
@@ -13,13 +14,18 @@ import interface_adapter.login.LoginViewModel;
 import interface_adapter.professor_pages.ProfessorPageController;
 import interface_adapter.professor_pages.ProfessorPagePresenter;
 import interface_adapter.professor_pages.ProfessorPageViewModel;
+import interface_adapter.rankedProf.RankedProfessorController;
+import interface_adapter.rankedProf.RankedProfessorPresenter;
+import interface_adapter.rankedProf.RankedProfessorState;
+import interface_adapter.rankedProf.RankedProfessorViewModel;
 import use_case.LoginUseCase.*;
 import use_case.PaperOfTheDayUseCase.*;
+import use_case.RankedProfessorCase.RankedProfessorDataAccessInterface;
+import use_case.RankedProfessorCase.RankedProfessorInputBoundary;
+import use_case.RankedProfessorCase.RankedProfessorInteractor;
+import use_case.RankedProfessorCase.RankedProfessorOutputBoundary;
 import use_case.professor_pages.*;
-import view.LoginView;
-import view.PaperOfTheDayView;
-import view.ProfessorPageView;
-import view.ViewManager;
+import view.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -44,6 +50,10 @@ public class AppBuilder {
 
     private PaperOfTheDayView paperOfTheDayView;
     private PaperOfTheDayViewModel paperOfTheDayViewModel;
+
+    private RankedProfessorView rankedProfView;
+    private RankedProfessorViewModel rankedProfViewModel;
+    private ProfessorPageController professorPageController;
 
     /**
      * builds components of application together
@@ -96,7 +106,7 @@ public class AppBuilder {
         professorDataAccessObject = new ProfessDataObject();
         ProfessorPageInputBoundary professorPageInteractor =
                 new ProfessorPageInteractor(professorDataAccessObject, professorPagePresenter);
-        ProfessorPageController professorPageController = new ProfessorPageController(professorPageInteractor);
+        professorPageController = new ProfessorPageController(professorPageInteractor);
         professorPageView.setProfessorPageController(professorPageController);
         return this;
     }
@@ -133,6 +143,58 @@ public class AppBuilder {
         });
         return this;
     }
+
+    /**
+     * Creates the Ranked Professor view.
+     * @return this AppBuilder
+     */
+    public AppBuilder addRankedProfPage() {
+        rankedProfViewModel = new RankedProfessorViewModel();
+        rankedProfView = new RankedProfessorView(rankedProfViewModel, viewManagerModel);
+        cardPanel.add(rankedProfView, RankedProfessorViewModel.VIEW_NAME);
+        return this;
+    }
+
+
+    /**
+     * Creates the Ranked Professor use case and connects it to the view.
+     * @return this AppBuilder
+     */
+    public AppBuilder addRankedProfUseCase() {
+        RankedProfessorDAO rankedProfDao = new RankedProfessorDAO();
+        RankedProfessorOutputBoundary presenter = new RankedProfessorPresenter(rankedProfViewModel);
+        RankedProfessorInputBoundary interactor =
+                new RankedProfessorInteractor(loginDataObject, rankedProfDao, presenter);
+
+        rankedProfView.setRankedProfessorController(new RankedProfessorController(interactor));
+        rankedProfView.setProfessorPageController(professorPageController);
+
+        loadFilterOptions(rankedProfDao);
+
+        // when the app switches to Paper of the Day, load it for whoever is logged in
+        viewManagerModel.addListener(() -> {
+            if (RankedProfessorViewModel.VIEW_NAME.equals(viewManagerModel.getCurrentViewName())) {
+                rankedProfView.loadFor(loginDataObject.getUsername());
+            }
+        });
+        return this;
+    }
+
+    /** Loads the checkbox options once and puts them in the view model's state. */
+    private void loadFilterOptions(RankedProfessorDAO dao) {
+        final RankedProfessorState state = rankedProfViewModel.getState();
+        try {
+            state.setTopicOptions(dao.getTopicOptions());
+            state.setLocationOptions(dao.getLocationOptions());
+        }
+        catch (RuntimeException exception) {
+            state.setError("Couldn't load the filter options. Please restart and try again.");
+        }
+        rankedProfViewModel.setState(state);
+        rankedProfViewModel.notifyStateChanged();
+    }
+
+
 
     /**
      * Creates main application window
