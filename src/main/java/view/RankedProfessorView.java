@@ -7,6 +7,7 @@ import interface_adapter.rankedProf.RankedProfessorController;
 import interface_adapter.rankedProf.RankedProfessorState;
 import interface_adapter.rankedProf.RankedProfessorViewModel;
 import interface_adapter.rankedProf.RankedProfessorViewModelListener;
+import interface_adapter.PaperOfTheDay.PaperOfTheDayViewModel;
 import use_case.RankedProfessorCase.RankedProfessorEntry;
 
 import java.awt.BorderLayout;
@@ -70,6 +71,8 @@ public class RankedProfessorView extends JPanel
     private ProfessorPageController professorPageController;
     private String username = "";
 
+    private final JButton paperButton = new JButton("Paper of the Day");
+
     /**
      * Creates the home page and listens for view model changes.
      *
@@ -83,6 +86,7 @@ public class RankedProfessorView extends JPanel
         this.viewModel.addListener(this);
 
         searchButton.addActionListener(this);
+        paperButton.addActionListener(this);
 
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(900, 560));
@@ -113,7 +117,21 @@ public class RankedProfessorView extends JPanel
         title.setAlignmentX(LEFT_ALIGNMENT);
         criteriaLabel.setAlignmentX(LEFT_ALIGNMENT);
 
-        panel.add(title);
+        paperButton.setFont(new Font(FONT, Font.BOLD, 13));
+        paperButton.setBackground(BLUE);
+        paperButton.setForeground(Color.WHITE);
+        paperButton.setOpaque(true);
+        paperButton.setBorderPainted(false);
+        paperButton.setFocusPainted(false);
+        paperButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+        final JPanel titleRow = new JPanel(new BorderLayout());
+        titleRow.setOpaque(false);
+        titleRow.add(title, BorderLayout.WEST);
+        titleRow.add(paperButton, BorderLayout.EAST);
+        titleRow.setAlignmentX(LEFT_ALIGNMENT);
+
+        panel.add(titleRow);
         panel.add(Box.createVerticalStrut(8));
         panel.add(criteriaLabel);
         return panel;
@@ -402,6 +420,9 @@ public class RankedProfessorView extends JPanel
     public void actionPerformed(ActionEvent evt) {
         if (evt.getSource() == searchButton) {
             runSearch(getSelected(topicBoxes), getSelected(locationBoxes));
+        }
+        else if (evt.getSource() == paperButton) {
+            viewManagerModel.setCurrentViewName(PaperOfTheDayViewModel.VIEW_NAME);
         }
     }
 
