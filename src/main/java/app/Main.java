@@ -12,6 +12,8 @@ public class Main {
                 .addProfessorPageUseCase()
                 .addPaperOfTheDayView()
                 .addPaperOfTheDayUseCase()
+                .addRankedProfPage()
+                .addRankedProfUseCase()
                 .build();
 
         application.setVisible(true);
