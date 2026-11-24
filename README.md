@@ -279,8 +279,10 @@ Instances: id, title, authors, year, abstract, url
 OpenAlex
 ### **Documentation:** 
 https://help.openalex.org/api/llm-quick-reference/
-### **How it is used in the program:**
+### **Usage in program:**
 We plan to use the OpenAlex API as a source for research data so that we don't have to build our own database of professors and research papers.
+
+
 ---
 ## Design Diagrams (Optional)
 ### UML Class Diagram
