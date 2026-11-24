@@ -32,6 +32,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -64,13 +66,14 @@ public class UserProfileView extends JPanel implements UserProfileViewModelListe
         userProfileViewModel.addListener(this);
         setLayout(new BorderLayout());
         setBackground(BACKGROUND);
-        setPreferredSize(new Dimension(900, 560));
+        setPreferredSize(new Dimension(1100, 720));
 
         add(makeHeader(), BorderLayout.NORTH);
 
         content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
         content.setBackground(BACKGROUND);
         content.setBorder(BorderFactory.createEmptyBorder(24, 32, 32, 32));
+        content.setAlignmentX(LEFT_ALIGNMENT);
         final JScrollPane scrollPane = new JScrollPane(content);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         scrollPane.setBackground(BACKGROUND);
@@ -163,6 +166,8 @@ public class UserProfileView extends JPanel implements UserProfileViewModelListe
             content.add(makeActivitySearch());
             content.add(Box.createVerticalStrut(14));
             activityCards.setOpaque(false);
+            activityCards.setAlignmentX(LEFT_ALIGNMENT);
+            activityCards.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
             content.add(activityCards);
             renderActivityCards();
         }
@@ -173,6 +178,7 @@ public class UserProfileView extends JPanel implements UserProfileViewModelListe
     private JPanel makeAccountCard(User user) {
         final JPanel card = makeCard();
         card.setLayout(new BorderLayout());
+        card.setAlignmentX(LEFT_ALIGNMENT);
         final JPanel body = new JPanel();
         body.setOpaque(false);
         body.setLayout(new BoxLayout(body, BoxLayout.Y_AXIS));
@@ -215,6 +221,8 @@ public class UserProfileView extends JPanel implements UserProfileViewModelListe
 
         final JPanel details = new JPanel(new GridLayout(1, 2, 12, 0));
         details.setOpaque(false);
+        details.setAlignmentX(LEFT_ALIGNMENT);
+        details.setMaximumSize(new Dimension(Integer.MAX_VALUE, 72));
         details.add(makeDetail("RESEARCH INTERESTS", formatList(user.getInterests())));
         details.add(makeDetail("PREFERRED INSTITUTIONS", formatList(user.getInstitutions())));
         body.add(identity);
@@ -231,7 +239,7 @@ public class UserProfileView extends JPanel implements UserProfileViewModelListe
         final JLabel label = new JLabel(title);
         label.setFont(new Font(FONT, Font.BOLD, 10));
         label.setForeground(GRAY);
-        final JLabel text = new JLabel("<html><div style='width:300px'>"
+        final JLabel text = new JLabel("<html><div style='width:220px'>"
                 + escapeHtml(value) + "</div></html>");
         text.setFont(new Font(FONT, Font.PLAIN, 14));
         text.setForeground(NAVY);
@@ -243,7 +251,8 @@ public class UserProfileView extends JPanel implements UserProfileViewModelListe
     private JPanel makeSummary(UserProfileState state) {
         final JPanel summary = new JPanel(new GridLayout(1, 3, 12, 0));
         summary.setOpaque(false);
-        summary.setMaximumSize(new Dimension(1100, 62));
+        summary.setAlignmentX(LEFT_ALIGNMENT);
+        summary.setMaximumSize(new Dimension(Integer.MAX_VALUE, 62));
         final long responses = state.getContactedProfessors().stream()
                 .filter(ContactedProfessor::hasResponded).count();
         summary.add(makeSummaryTile(state.getSavedPapers().size(), "SAVED PAPERS"));
@@ -289,7 +298,8 @@ public class UserProfileView extends JPanel implements UserProfileViewModelListe
         activitySearchField.setToolTipText("Search papers and contacted professors");
         activitySearchField.setPreferredSize(new Dimension(250, 38));
         searchPanel.add(activitySearchField, BorderLayout.EAST);
-        searchPanel.setMaximumSize(new Dimension(1100, 48));
+        searchPanel.setAlignmentX(LEFT_ALIGNMENT);
+        searchPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 48));
         return searchPanel;
     }
 
@@ -320,17 +330,32 @@ public class UserProfileView extends JPanel implements UserProfileViewModelListe
                     .reversed());
         }
 
-        final JPanel row = new JPanel(new GridLayout(1, 2, 18, 0));
+        final JPanel row = new JPanel(new GridBagLayout());
         row.setOpaque(false);
-        row.setAlignmentX(CENTER_ALIGNMENT);
-        row.setMaximumSize(new Dimension(1100, Integer.MAX_VALUE));
+        row.setAlignmentX(LEFT_ALIGNMENT);
+        row.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
+        final GridBagConstraints savedPapersConstraints = new GridBagConstraints();
+        savedPapersConstraints.gridx = 0;
+        savedPapersConstraints.gridy = 0;
+        savedPapersConstraints.weightx = 0.42;
+        savedPapersConstraints.weighty = 1;
+        savedPapersConstraints.fill = GridBagConstraints.BOTH;
+        savedPapersConstraints.insets = new java.awt.Insets(0, 0, 0, 9);
         row.add(makeSavedPapersCard(sortedPapers,
                 !state.getSavedPapers().isEmpty() && papers.isEmpty() && !query.isEmpty(),
-                state.getUser().getUsername()));
+                state.getUser().getUsername()), savedPapersConstraints);
+
+        final GridBagConstraints professorsConstraints = new GridBagConstraints();
+        professorsConstraints.gridx = 1;
+        professorsConstraints.gridy = 0;
+        professorsConstraints.weightx = 0.58;
+        professorsConstraints.weighty = 1;
+        professorsConstraints.fill = GridBagConstraints.BOTH;
+        professorsConstraints.insets = new java.awt.Insets(0, 9, 0, 0);
         row.add(makeContactedProfessorsCard(professors,
                 !state.getContactedProfessors().isEmpty() && professors.isEmpty()
                         && !query.isEmpty(),
-                state.getUser().getUsername(), sortedProfessors));
+                state.getUser().getUsername(), sortedProfessors), professorsConstraints);
         activityCards.removeAll();
         activityCards.add(row, BorderLayout.CENTER);
         activityCards.revalidate();
@@ -391,7 +416,7 @@ public class UserProfileView extends JPanel implements UserProfileViewModelListe
                 final String metadata = paper.getYear() > 0
                         ? String.join(", ", paper.getAuthors()) + " · " + paper.getYear()
                         : String.join(", ", paper.getAuthors());
-                card.add(makeMetadata(metadata.isBlank() ? "Research paper" : metadata));
+                card.add(makeWrappedMetadata(metadata.isBlank() ? "Research paper" : metadata));
                 card.add(Box.createVerticalStrut(12));
             }
         }
@@ -433,8 +458,8 @@ public class UserProfileView extends JPanel implements UserProfileViewModelListe
         card.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(0xE1E7F0)),
                 BorderFactory.createEmptyBorder(18, 18, 18, 18)));
-        card.setAlignmentX(CENTER_ALIGNMENT);
-        card.setMaximumSize(new Dimension(1100, Integer.MAX_VALUE));
+        card.setAlignmentX(LEFT_ALIGNMENT);
+        card.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
         return card;
     }
 
@@ -469,7 +494,8 @@ public class UserProfileView extends JPanel implements UserProfileViewModelListe
     }
 
     private JButton makeLinkButton(String text) {
-        final JButton button = new JButton(text);
+        final JButton button = new JButton("<html><div style='width:300px'>"
+                + escapeHtml(text) + "</div></html>");
         button.setFont(new Font(FONT, Font.BOLD, 13));
         button.setForeground(BLUE);
         button.setHorizontalAlignment(JButton.LEFT);
@@ -484,6 +510,15 @@ public class UserProfileView extends JPanel implements UserProfileViewModelListe
 
     private JLabel makeMetadata(String text) {
         final JLabel label = new JLabel(text);
+        label.setFont(new Font(FONT, Font.PLAIN, 12));
+        label.setForeground(GRAY);
+        label.setAlignmentX(LEFT_ALIGNMENT);
+        return label;
+    }
+
+    private JLabel makeWrappedMetadata(String text) {
+        final JLabel label = new JLabel("<html><div style='width:260px'>"
+                + escapeHtml(text) + "</div></html>");
         label.setFont(new Font(FONT, Font.PLAIN, 12));
         label.setForeground(GRAY);
         label.setAlignmentX(LEFT_ALIGNMENT);
@@ -516,19 +551,22 @@ public class UserProfileView extends JPanel implements UserProfileViewModelListe
     }
 
     private JPanel makeStatus(ContactedProfessor professor, String username) {
-        final JPanel row = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 5));
+        final JPanel row = new JPanel();
+        row.setLayout(new BoxLayout(row, BoxLayout.Y_AXIS));
         row.setOpaque(false);
         row.setAlignmentX(LEFT_ALIGNMENT);
         final boolean responded = professor.hasResponded();
+        final JPanel statusRow = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 5));
+        statusRow.setOpaque(false);
         final JLabel status = new JLabel(responded ? "Responded" : "Awaiting response");
         status.setFont(new Font(FONT, Font.BOLD, 10));
         status.setForeground(responded ? new Color(0x166534) : GRAY);
         status.setBackground(responded ? new Color(0xDCFCE7) : new Color(0xEEF1F5));
         status.setOpaque(true);
         status.setBorder(BorderFactory.createEmptyBorder(3, 7, 3, 7));
-        row.add(status);
-        row.add(Box.createHorizontalStrut(8));
-        row.add(makeMetadata("Contacted " + professor.getContactedOn()));
+        statusRow.add(status);
+        statusRow.add(Box.createHorizontalStrut(8));
+        statusRow.add(makeMetadata("Contacted " + professor.getContactedOn()));
         final JButton responseButton = new JButton(
                 responded ? "Undo" : "Mark responded");
         responseButton.setFont(new Font(FONT, Font.PLAIN, 11));
@@ -543,8 +581,9 @@ public class UserProfileView extends JPanel implements UserProfileViewModelListe
                         professor.getName(), professor.getInstitution(), !responded);
             }
         });
-        row.add(Box.createHorizontalStrut(8));
-        row.add(responseButton);
+        statusRow.add(Box.createHorizontalStrut(8));
+        statusRow.add(responseButton);
+        row.add(statusRow);
         return row;
     }
 

@@ -1,0 +1,64 @@
+{"users": [{
+  "institutions": ["University of Toronto"],
+  "password": "password",
+  "interests": [
+    "AI",
+    "Machine Learning"
+  ],
+  "savedPapers": [
+    {
+      "year": 2017,
+      "abstractText": "Introduces the Transformer architecture, which relies on attention rather than recurrence or convolution for sequence modeling.",
+      "id": "W2626778328",
+      "title": "Attention Is All You Need",
+      "url": "https://arxiv.org/abs/1706.03762",
+      "authors": [
+        "Ashish Vaswani",
+        "Noam Shazeer",
+        "Niki Parmar",
+        "Jakob Uszkoreit",
+        "Llion Jones",
+        "Aidan N. Gomez",
+        "Lukasz Kaiser",
+        "Illia Polosukhin"
+      ]
+    },
+    {
+      "year": 2018,
+      "abstractText": "Introduces BERT, a bidirectional language model pretrained on unlabeled text and adapted to downstream language tasks.",
+      "id": "W2896457183",
+      "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+      "url": "https://arxiv.org/abs/1810.04805",
+      "authors": [
+        "Jacob Devlin",
+        "Ming-Wei Chang",
+        "Kenton Lee",
+        "Kristina Toutanova"
+      ]
+    }
+  ],
+  "username": "iman",
+  "contactedProfessors": [
+    {
+      "institution": "University of Toronto",
+      "name": "Professor One",
+      "researchAreas": [
+        "AI",
+        "Machine Learning"
+      ],
+      "contactedOn": "2026-11-20",
+      "id": "uoft-prof-1",
+      "publications": [],
+      "responded": false
+    },
+    {
+      "institution": "University of Toronto",
+      "name": "Professor Two",
+      "researchAreas": ["Machine Learning"],
+      "contactedOn": "2026-11-21",
+      "id": "uoft-prof-2",
+      "publications": [],
+      "responded": false
+    }
+  ]
+}]}
