@@ -6,13 +6,13 @@ import entities.UserFactory;
 /**
  * The Signup Interactor.
  */
-public class signupInteractor implements signupInputBoundary {
-    private final signupDAInterface userDataAccessObject;
-    private final signupOutputBoundary userPresenter;
+public class SignupInteractor implements SignupInputBoundary {
+    private final SignupDAInterface userDataAccessObject;
+    private final SignupOutputBoundary userPresenter;
     private final UserFactory userFactory;
 
-    public signupInteractor(signupDAInterface signupDataAccessInterface,
-                            signupOutputBoundary signupOutputBoundary,
+    public SignupInteractor(SignupDAInterface signupDataAccessInterface,
+                            SignupOutputBoundary signupOutputBoundary,
                             UserFactory userFactory) {
         this.userDataAccessObject = signupDataAccessInterface;
         this.userPresenter = signupOutputBoundary;
@@ -20,7 +20,7 @@ public class signupInteractor implements signupInputBoundary {
     }
 
     @Override
-    public void execute(signupInputData signupInputData) {
+    public void execute(SignupInputData signupInputData) {
         if (userDataAccessObject.existsByName(signupInputData.getUsername())) {
             userPresenter.prepareFailView("User already exists.");
         }
@@ -29,6 +29,9 @@ public class signupInteractor implements signupInputBoundary {
         }
         else if ("".equals(signupInputData.getPassword())) {
             userPresenter.prepareFailView("New password cannot be empty");
+        }
+        else if (signupInputData.getTopics().isEmpty()) {
+            userPresenter.prepareFailView("Please select at least one research area.");
         }
         else if ("".equals(signupInputData.getUsername())) {
             userPresenter.prepareFailView("Username cannot be empty");
@@ -39,7 +42,7 @@ public class signupInteractor implements signupInputBoundary {
                     signupInputData.getLocations());
             userDataAccessObject.save(user);
 
-            final signupOutputData signupOutputData = new signupOutputData(user.getUsername());
+            final SignupOutputData signupOutputData = new SignupOutputData(user.getUsername());
             userPresenter.prepareSuccessView(signupOutputData);
         }
     }

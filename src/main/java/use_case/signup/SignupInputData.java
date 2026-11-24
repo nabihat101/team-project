@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * The Input Data for the Signup Use Case.
  */
-public class signupInputData {
+public class SignupInputData {
 
     private final String username;
     private final String password;
@@ -14,7 +14,7 @@ public class signupInputData {
     private final List<String> locations;
 
 
-    public signupInputData(String username, String password, String repeatPassword, List<String>
+    public SignupInputData(String username, String password, String repeatPassword, List<String>
                            topics, List<String> locations) {
         this.username = username;
         this.password = password;
