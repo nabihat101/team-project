@@ -7,6 +7,7 @@ public class ProfessorFactory {
     /**
      * Creates a new professor.
      *
+     * @param id            the ID of the professor
      * @param name          the full name of the professor
      * @param institution   the institution the professor works at
      * @param researchAreas the research areas the professor works in

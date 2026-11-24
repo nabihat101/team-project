@@ -13,6 +13,8 @@ public class Main {
                     .addProfessorPageUseCase()
                     .addPaperOfTheDayView()
                     .addPaperOfTheDayUseCase()
+                    .addRankedProfPage()
+                    .addRankedProfUseCase()
                     .addUserProfileView()
                     .addUserProfileUseCase()
                     .build();
