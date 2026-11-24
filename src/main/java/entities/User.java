@@ -24,7 +24,7 @@ public class User {
 
     public User(String username, String password, List<String> interests,
                 List<String> institutions){
-        
+
         this.username = username;
         this.password = password;
         this.interests = List.copyOf(interests);
@@ -94,5 +94,4 @@ public class User {
 
 
 }
-
 
