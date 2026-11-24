@@ -141,8 +141,12 @@ public class AppBuilder {
                 paperOfTheDayView.loadFor(loginDataObject.getUsername());
             }
         });
+
+        paperOfTheDayView.setOnBack(() ->
+                viewManagerModel.setCurrentViewName(RankedProfessorViewModel.VIEW_NAME));
         return this;
     }
+
 
     /**
      * Creates the Ranked Professor view.
