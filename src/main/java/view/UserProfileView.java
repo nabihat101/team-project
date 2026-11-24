@@ -4,7 +4,7 @@ import entities.ContactedProfessor;
 import entities.ResearchPaper;
 import entities.User;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.loggedin.LoggedInViewModel;
+import interface_adapter.rankedProf.RankedProfessorViewModel;
 import interface_adapter.userprofile.UserProfileState;
 import interface_adapter.userprofile.UserProfileController;
 import interface_adapter.userprofile.UserProfileViewModel;
@@ -145,7 +145,7 @@ public class UserProfileView extends JPanel implements UserProfileViewModelListe
         backButton.setFocusPainted(false);
         backButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         backButton.addActionListener(event ->
-                viewManagerModel.setCurrentViewName(LoggedInViewModel.VIEW_NAME));
+                viewManagerModel.setCurrentViewName(RankedProfessorViewModel.VIEW_NAME));
         header.add(backButton, BorderLayout.EAST);
         return header;
     }

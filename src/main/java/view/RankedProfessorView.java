@@ -8,6 +8,7 @@ import interface_adapter.rankedProf.RankedProfessorState;
 import interface_adapter.rankedProf.RankedProfessorViewModel;
 import interface_adapter.rankedProf.RankedProfessorViewModelListener;
 import interface_adapter.PaperOfTheDay.PaperOfTheDayViewModel;
+import interface_adapter.userprofile.UserProfileViewModel;
 import use_case.RankedProfessorCase.RankedProfessorEntry;
 
 import java.awt.BorderLayout;
@@ -71,6 +72,7 @@ public class RankedProfessorView extends JPanel
     private ProfessorPageController professorPageController;
     private String username = "";
 
+    private final JButton profileButton = new JButton("My Profile");
     private final JButton paperButton = new JButton("Paper of the Day");
 
     /**
@@ -86,6 +88,7 @@ public class RankedProfessorView extends JPanel
         this.viewModel.addListener(this);
 
         searchButton.addActionListener(this);
+        profileButton.addActionListener(this);
         paperButton.addActionListener(this);
 
         setLayout(new BorderLayout());
@@ -117,24 +120,42 @@ public class RankedProfessorView extends JPanel
         title.setAlignmentX(LEFT_ALIGNMENT);
         criteriaLabel.setAlignmentX(LEFT_ALIGNMENT);
 
-        paperButton.setFont(new Font(FONT, Font.BOLD, 13));
-        paperButton.setBackground(BLUE);
-        paperButton.setForeground(Color.WHITE);
-        paperButton.setOpaque(true);
-        paperButton.setBorderPainted(false);
-        paperButton.setFocusPainted(false);
-        paperButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        styleHeaderButton(profileButton);
+        styleHeaderButton(paperButton);
 
         final JPanel titleRow = new JPanel(new BorderLayout());
         titleRow.setOpaque(false);
         titleRow.add(title, BorderLayout.WEST);
-        titleRow.add(paperButton, BorderLayout.EAST);
+        final JPanel headerButtons = new JPanel();
+        headerButtons.setLayout(new BoxLayout(headerButtons, BoxLayout.Y_AXIS));
+        headerButtons.setOpaque(false);
+        profileButton.setAlignmentX(RIGHT_ALIGNMENT);
+        paperButton.setAlignmentX(RIGHT_ALIGNMENT);
+        headerButtons.add(profileButton);
+        headerButtons.add(Box.createVerticalStrut(8));
+        headerButtons.add(paperButton);
+        titleRow.add(headerButtons, BorderLayout.EAST);
         titleRow.setAlignmentX(LEFT_ALIGNMENT);
 
         panel.add(titleRow);
         panel.add(Box.createVerticalStrut(8));
         panel.add(criteriaLabel);
         return panel;
+    }
+
+    /**
+     * Applies the shared styling used by buttons in the header.
+     *
+     * @param button the button to style
+     */
+    private void styleHeaderButton(JButton button) {
+        button.setFont(new Font(FONT, Font.BOLD, 13));
+        button.setBackground(BLUE);
+        button.setForeground(Color.WHITE);
+        button.setOpaque(true);
+        button.setBorderPainted(false);
+        button.setFocusPainted(false);
+        button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
 
@@ -420,6 +441,9 @@ public class RankedProfessorView extends JPanel
     public void actionPerformed(ActionEvent evt) {
         if (evt.getSource() == searchButton) {
             runSearch(getSelected(topicBoxes), getSelected(locationBoxes));
+        }
+        else if (evt.getSource() == profileButton) {
+            viewManagerModel.setCurrentViewName(UserProfileViewModel.VIEW_NAME);
         }
         else if (evt.getSource() == paperButton) {
             viewManagerModel.setCurrentViewName(PaperOfTheDayViewModel.VIEW_NAME);
