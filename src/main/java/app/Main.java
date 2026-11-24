@@ -10,8 +10,11 @@ public class Main {
                 .addLoginUseCase()
                 .addProfessorPageView()
                 .addProfessorPageUseCase()
+                .addPaperOfTheDayView()
+                .addPaperOfTheDayUseCase()
                 .build();
 
         application.setVisible(true);
+
     }
 }
