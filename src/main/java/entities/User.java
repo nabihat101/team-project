@@ -1,5 +1,6 @@
 package entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
@@ -8,6 +9,8 @@ public class User {
     private String password;
     private List<String> interests;
     private List<String> institutions;
+    private List<ContactedProfessor> contactedProfessors;
+    private List<ResearchPaper> savedPapers;
 
 
     /**
@@ -59,6 +62,35 @@ public class User {
     public List<String> getInstitutions(){
         return institutions;
     }
+
+    /**
+     * Returns the professors the user has contacted.
+     *
+     * @return the user's contacted professors
+     */
+    public List<ContactedProfessor> getContactedProfessors() {
+        return contactedProfessors;
+    }
+
+    /**
+     * Returns the research papers saved by the user.
+     *
+     * @return the user's saved papers
+     */
+    public List<ResearchPaper> getSavedPapers() {
+        return savedPapers;
+    }
+
+    public void setSavedPapers(List<ResearchPaper> savedPapers) {
+        this.savedPapers = new ArrayList<>(savedPapers);
+    }
+
+    public void setContactedProfessors(List<ContactedProfessor> contactedProfessors) {
+        this.contactedProfessors = new ArrayList<>(contactedProfessors);
+    }
+
+
+
 
 
 }
