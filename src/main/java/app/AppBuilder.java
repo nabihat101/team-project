@@ -163,8 +163,6 @@ public class AppBuilder {
     public AppBuilder addRankedProfUseCase() {
         RankedProfessorDAO rankedProfDao = new RankedProfessorDAO();
         RankedProfessorOutputBoundary presenter = new RankedProfessorPresenter(rankedProfViewModel);
-        RankedProfessorDataAccessInterface rankedProfDataAccessInterface =
-                new RankedProfessorDAO();
         RankedProfessorInputBoundary interactor =
                 new RankedProfessorInteractor(loginDataObject, rankedProfDao, presenter);
 
