@@ -120,7 +120,7 @@ public class LoginDataObject implements LoginDataAccessInterface, UserDataAccess
             }
         }
 
-        return new ContactedProfessor(                                                     // CHECK order
+        return new ContactedProfessor(
                 json.getString("id"),
                 json.optString("name", ""),
                 json.optString("institution", ""),
@@ -130,7 +130,7 @@ public class LoginDataObject implements LoginDataAccessInterface, UserDataAccess
                 json.optBoolean("responded", false));
     }
 
-    // ---------- writing ----------
+    // writing
 
     /**
      * Rewrites the whole file with every user.
@@ -145,13 +145,13 @@ public class LoginDataObject implements LoginDataAccessInterface, UserDataAccess
             userJson.put("institutions", user.getInstitutions());
 
             final JSONArray savedPapers = new JSONArray();
-            for (ResearchPaper paper : user.getSavedPapers()) {                           // CHECK
+            for (ResearchPaper paper : user.getSavedPapers()) {
                 savedPapers.put(paperToJson(paper));
             }
             userJson.put("savedPapers", savedPapers);
 
             final JSONArray contacted = new JSONArray();
-            for (ContactedProfessor professor : user.getContactedProfessors()) {         // CHECK
+            for (ContactedProfessor professor : user.getContactedProfessors()) {
                 contacted.put(professorToJson(professor));
             }
             userJson.put("contactedProfessors", contacted);
@@ -163,7 +163,7 @@ public class LoginDataObject implements LoginDataAccessInterface, UserDataAccess
         root.put("users", usersArray);
 
         try (FileWriter writer = new FileWriter(jsonFile)) {
-            writer.write(root.toString(2));   // 2 = indent so it's readable
+            writer.write(root.toString(2));
         }
         catch (IOException ex) {
             throw new RuntimeException(ex);
@@ -199,8 +199,8 @@ public class LoginDataObject implements LoginDataAccessInterface, UserDataAccess
         json.put("institution", professor.getInstitution());
         json.put("researchAreas", professor.getResearchAreas());
         json.put("publications", publications);
-        json.put("contactedOn", professor.getContactedOn().toString());                 // CHECK
-        json.put("responded", professor.hasResponded());                                  // CHECK
+        json.put("contactedOn", professor.getContactedOn().toString());
+        json.put("responded", professor.hasResponded());
         return json;
     }
 
