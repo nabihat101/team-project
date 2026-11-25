@@ -87,9 +87,6 @@ public class LoginDataObject implements LoginDataAccessInterface, UserDataAccess
             user.setContactedProfessors(contacted);
             users.put(user.getUsername(), user);
         }
-
-        System.out.println("Reading: " + jsonFile.getAbsolutePath());
-        System.out.println("Loaded users: " + users.keySet());
     }
 
 
@@ -120,7 +117,7 @@ public class LoginDataObject implements LoginDataAccessInterface, UserDataAccess
             }
         }
 
-        return new ContactedProfessor(                                                     // CHECK order
+        return new ContactedProfessor(
                 json.getString("id"),
                 json.optString("name", ""),
                 json.optString("institution", ""),
@@ -130,7 +127,7 @@ public class LoginDataObject implements LoginDataAccessInterface, UserDataAccess
                 json.optBoolean("responded", false));
     }
 
-    // ---------- writing ----------
+    // writing
 
     /**
      * Rewrites the whole file with every user.
