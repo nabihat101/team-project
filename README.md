@@ -38,26 +38,23 @@ The user clicks on a button to create an account or a button to login
 - User has successfully created an account or has logged into the application, launching a home page on application
 - Unsuccessful login or creation of account will lead to a popup error message prompting user to try again
 - User's interests and information are saved to database
-- The user can receive personalized papers and cold emails based on their information
 #### Main Success Scenario:
 1. User opens application
 2. User selects option to create an account
-3. System prompts user to enter their information and interests
-4. User clicks submit button
-5. System validates submitted information to ensure no errors
-6. System creates user account and saves information to database
-7. System displays message that account was created successfully
-8. User logs in with their account name and password
-9. System verifies the password and grants access to application
-10. System launches home page where user can view a personalized paper, personalized suggestions for professors to contact, and search bar.
+3. System prompts user to enter their preferred usename and password
+4. System gives them a list of options to choose from for preferred interests and institutions
+5. User clicks submit button
+6. System validates submitted information to ensure no errors
+7. System creates user account and saves information to database
+8. System displays message that account was created successfully
+9. User logs in with their account name and password
+10. System verifies the password and grants access to application
+11. System launches home page where user can view a personalized paper, personalized suggestions for professors to contact, and filter bar.
 #### Extensions:
 ##### 4a: User leaves fields empty
 1. System will display message with fields that still need to filled out by user
 2. Use case continues at step 4
-##### 5a: Email entered is invalid and not in use (subject to change if we don't want to collect emails bc of privacy)
-1. System will prompt user to reenter a correct email
-2. Use case continues at step 5
-##### 5b: Email entered is already in database
+##### 5b: Username entered is already in database
 1. System will inform user that they already have an account
 2. System will prompt user to login
 3. Use case continues at step 8
@@ -258,20 +255,24 @@ The user clicks on the "My Profile" button from the home page
 ** Each use case corresponds to one user story. 
 | Team Member | MVP Use Case |
 |-------------|--------------|
-| Nabiha | Use Case #4 - Professor Page|
-| Yusyra | Use Case #2 - Ranked List of Professors|
-| Dana | Use Case #3 - Recommended Papers Systems|
-| Jasmine | Use Case #5 - Cold Emailing|
-| Iman | Use Case #6 - User System|
+| Nabiha | Use Case #4 - Professor Page + Use Case # -- - Saving Contacted Professors|
+| Yusyra | Use Case #2 - Ranked List of Professors + Use Case #1 - Signing Up/Creating Account|
+| Dana | Use Case #3 - Recommended Papers Systems + DAO for Login and Signup (read/write to JSON)|
+| Jasmine | Use Case #5 - Cold Emailing + Use Case # -- - Logout|
+| Iman | Use Case #6 - User System + Use Case # -- - Saving Contacted Professors|
 ---
 ## Entities
-(To be modified as needed). 
 ### User
 Instances: username, password, research interests, location preferences
 ### Professor
 Instances: id, name, institution, research areas, publications
 ### ResearchPaper
 Instances: id, title, authors, year, abstract, url
+
+### ContactedProfessor; Subclass of Professor
+Instances: id, name, institution, ----
+### PaperOfTheDay; Subclass of ResearchPaper: 
+Instances: ----
 
 ---
 ## API Usage
@@ -280,11 +281,27 @@ OpenAlex
 ### **Documentation:** 
 https://help.openalex.org/api/llm-quick-reference/
 ### **Usage in program:**
-We plan to use the OpenAlex API as a source for research data so that we don't have to build our own database of professors and research papers.
+We use OpenAlex as the source of all research data (professors, papers, and the topic and institution lists). 
+Requests are made with OkHttp, responses are parsed with org.json, and every request is authenticated with a free API key read from `api_key.properties` (gitignored, never
+committed to protect API key). All API calls live in the data access layer (`data_access/`), in classes defined in the use case layer.
 
+**Ranked Professor**: `RankedProfessorDAO`
+- `GET /subfields?filter=field.id:17` loads the Computer Science subfields, which are the research area checkboxes (also used by Signup).
+- `GET /institutions?filter=country_code:CA,type:education&sort=cited_by_count:desc` loads the top Canadian universities, which are the location checkboxes (also used by Signup).
+- `GET /authors?filter=topics.subfield.id:<ids>,last_known_institutions.id:<ids>&sort=cited_by_count:desc` finds professors matching the selected subfields and institutions (or all of Canada if no
+  location is selected). `|` combines several values with "or". Each author's subfields become their research areas, and the interactor ranks them by how many selected areas they match.
+
+**Professor page**: `ProfessDataObject`
+- `GET /authors/{id}` loads one professor's name, institution and topics.
+- `GET /works?filter=author.id:{id}` loads their publications.
+
+**Paper of the Day**: `PaperSearchDataObject`
+- `GET /works?search=<interest>&filter=from_publication_date:<date>&sort=cited_by_count:desc`
+  finds recent papers for each of the user's interests. 
 
 ---
-## Design Diagrams (Optional)
+## Design Diagrams
+All use cases follow CA, so their UML diagrams are mostly similar. Below is an example of the Ranked Professor Use Case (use case #2).
 ### UML Class Diagram
 - #### Ranked Professors Use Case (Interface Adapters + Use Case Interactor):
 ![Ranked Professor Use Case Snippet](uml1.png)
