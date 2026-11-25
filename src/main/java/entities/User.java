@@ -9,9 +9,8 @@ public class User {
     private String password;
     private List<String> interests;
     private List<String> institutions;
-    private List<ContactedProfessor> contactedProfessors;
-    private List<ResearchPaper> savedPapers;
-
+    private List<ContactedProfessor> contactedProfessors = new ArrayList<>();
+    private List<ResearchPaper> savedPapers = new ArrayList<>();
 
     /**
      * Creates a new user
