@@ -309,9 +309,11 @@ All use cases follow CA, so their UML diagrams are mostly similar. Below is an e
 ![Ranked Professor View Snippet](uml2.png)
 
 ### Sequence Diagrams
+
 ---
 ## How to Run
 [Instructions for running the program.]
+
 ---
 ## Notes
 [Any additional project information.]
